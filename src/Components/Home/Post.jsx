@@ -1,9 +1,5 @@
 import { HeartIcon, BookmarkIcon } from '../../icons/svg';
-
-const getName = (firstName = '', lastName = '') =>
-  `${firstName[0].toUpperCase()}${firstName.slice(
-    1
-  )} ${lastName[0].toUpperCase()}${lastName.slice(1)}`;
+import { getFullName } from '../../utils';
 
 const dateFormat = (dateObj) => {
   return new Intl.DateTimeFormat('en-Us', {
@@ -31,7 +27,7 @@ export const Post = ({ post, author }) => {
           </div>
           <div className="post-details">
             <div className="author-details">
-              <p className="name">{getName(firstName, lastName)}</p>
+              <p className="name">{getFullName(firstName, lastName)}</p>
               <span className="username">@{username}</span>
             </div>
             <p className="creation">{dateFormat(createdAt)}</p>

@@ -82,7 +82,7 @@ export const loginHandler = function (schema, request) {
     if (password === foundUser.password) {
       const encodedToken = sign(
         { _id: foundUser._id, username },
-        process.env.REACT_APP_JWT_SECRET
+        import.meta.env.VITE_REACT_APP_JWT_SECRET
       );
       return new Response(200, {}, { foundUser, encodedToken });
     }

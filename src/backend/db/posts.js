@@ -46,4 +46,43 @@ export const posts = [
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
+  {
+    _id: uuid(),
+    content:
+      "Spent the whole weekend soldering and programming my custom keyboard. It's a labor of love, but the end result is so worth it. 🛠️❤️",
+    likes: {
+      likeCount: 22,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: 'adarshbalika',
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    content:
+      "Exploring different switch options for my next build. It's incredible how a small piece of metal can make such a difference in typing feel. 🔄⌨️",
+    likes: {
+      likeCount: 7,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: 'shubhamsoni',
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    content:
+      "Joined a keyboard enthusiasts' meetup and had a blast geeking out about keycap profiles, switch lubing, and soldering techniques. Finally found my tribe! 🤓🎉 ",
+    likes: {
+      likeCount: 125,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: 'thatsaadanam',
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
 ];

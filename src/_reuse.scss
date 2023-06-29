@@ -12,6 +12,7 @@ $dark-3: #27282f;
 $light-1: #26272e;
 $light-2: #9fa1a5;
 $light-3: #222227;
+$light-4: #babfc8;
 
 $white-1: #fffffe;
 
@@ -33,4 +34,12 @@ $border-gray-1: 1px solid rgba(220, 220, 221, 0.3);
 
 .cur-p {
   cursor: pointer;
+}
+
+.btn {
+  @extend .cur-p;
+  font-family: inherit;
+  border: none;
+  outline: none;
+  padding: 4px 8px;
 }

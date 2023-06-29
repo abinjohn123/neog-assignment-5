@@ -25,4 +25,8 @@ body {
 #root {
   max-width: 1040px;
   margin: 0 auto;
+
+  display: grid;
+  gap: 32px;
+  grid-template-columns: 650px auto;
 }

@@ -1,0 +1,31 @@
+/*
+*************
+  VARIABLES
+*************
+*/
+
+// colors
+$dark-1: #17181c;
+$dark-2: #1e1f23;
+$dark-3: #27282f;
+
+$light-1: #26272e;
+$light-2: #9fa1a5;
+
+$white-1: #fffffe;
+
+$primary-1: #3286fc;
+
+// border
+$border-gray-1: 1px solid rgba(220, 220, 221, 0.3);
+
+/*
+************
+  MIXINS
+************
+*/
+@mixin d-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

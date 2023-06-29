@@ -1,0 +1,11 @@
+@import '../../reuse';
+
+.app-header {
+  padding: 16px 0;
+  @extend .d-flex;
+  justify-content: flex-start;
+
+  .header-actions {
+    margin-left: auto;
+  }
+}

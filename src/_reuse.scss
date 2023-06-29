@@ -11,6 +11,7 @@ $dark-3: #27282f;
 
 $light-1: #26272e;
 $light-2: #9fa1a5;
+$light-3: #222227;
 
 $white-1: #fffffe;
 
@@ -21,11 +22,15 @@ $border-gray-1: 1px solid rgba(220, 220, 221, 0.3);
 
 /*
 ************
-  MIXINS
+  HELPERS
 ************
 */
-@mixin d-flex {
+.d-flex {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.cur-p {
+  cursor: pointer;
 }

@@ -1,0 +1,73 @@
+@import '../../_reuse.scss';
+
+.feed {
+  padding: 24px;
+}
+
+.post-card {
+  @extend .cur-p;
+  padding: 16px;
+  max-width: 600px;
+  border-radius: 8px;
+  border: $border-gray-1;
+  background-color: $dark-2;
+  margin-bottom: 16px;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: $light-3;
+  }
+
+  .post-header {
+    @extend .d-flex;
+    justify-content: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+
+    .avatar {
+      height: 32px;
+      width: 32px;
+      border: 2px solid $primary-1;
+      border-radius: 50%;
+
+      img {
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+
+    .author-details {
+      @extend .d-flex;
+      gap: 4px;
+      margin-bottom: 4px;
+
+      .name {
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .username {
+        font-size: 1.2rem;
+        color: $light-2;
+      }
+    }
+
+    .creation {
+      font-size: 1.2rem;
+      color: $light-2;
+    }
+  }
+
+  .post-content {
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+    border-bottom: $border-gray-1;
+  }
+
+  .post-actions {
+    @extend .d-flex;
+    gap: 24px;
+    justify-content: space-between;
+  }
+}

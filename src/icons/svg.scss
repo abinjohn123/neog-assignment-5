@@ -1,0 +1,15 @@
+@import '../reuse';
+
+.icon {
+  stroke: $light-2;
+  fill: $dark-2;
+  height: 24px;
+  width: 24px;
+
+  transition: fill 0.2s;
+
+  &:hover {
+    stroke: $primary-1;
+    fill: $primary-1;
+  }
+}

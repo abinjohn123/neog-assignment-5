@@ -1,5 +1,10 @@
 @import '../../_reuse.scss';
 
+.sort-card,
+.post-card {
+  max-width: 660px;
+}
+
 .sort-card {
   padding: 16px;
   border-radius: 8px;

@@ -5,6 +5,16 @@
   @extend .d-flex;
   justify-content: flex-start;
 
+  .logo {
+    text-decoration: none;
+    &:visited,
+    &:active {
+      text-decoration: none;
+    }
+
+    color: $primary-1;
+  }
+
   .header-actions {
     @extend .d-flex;
     gap: 12px;

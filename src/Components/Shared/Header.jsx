@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, NavLink } from 'react-router-dom';
 
 import { useAuthContext } from '../../context/AuthContext';
 import useUser from '../../hooks/useUser';
@@ -34,7 +34,10 @@ const Header = () => {
 
   return (
     <header className="app-header">
-      <h1>key.club</h1>
+      <NavLink to="/" className="logo">
+        <h1>key.club</h1>
+      </NavLink>
+
       <div className="header-actions">
         {loggedInUser?._id && (
           <Link to={`/${loggedInUser._id}`}>

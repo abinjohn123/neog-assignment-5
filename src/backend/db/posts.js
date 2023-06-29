@@ -12,7 +12,7 @@ export const posts = [
     content:
       '"Got a new keyboard case today, and it feels like a total game-changer! The sturdy aluminum body adds a touch of elegance and gives my typing experience a solid foundation. 💪💼',
     likes: {
-      likeCount: 0,
+      likeCount: 5,
       likedBy: [],
       dislikedBy: [],
     },
@@ -38,7 +38,7 @@ export const posts = [
     content:
       'Just discovered a hidden keyboard customization shop in my city. Spent hours exploring their collection of unique keysets and got lost in a world of colors and textures! 🌈🔥 ',
     likes: {
-      likeCount: 0,
+      likeCount: 15,
       likedBy: [],
       dislikedBy: [],
     },

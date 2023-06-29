@@ -69,5 +69,12 @@
     @extend .d-flex;
     gap: 24px;
     justify-content: space-between;
+
+    .action {
+      @extend .d-flex;
+      gap: 4px;
+      font-size: 1.4rem;
+      color: $light-2;
+    }
   }
 }

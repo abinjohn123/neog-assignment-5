@@ -42,10 +42,11 @@ export const Post = ({ post, author }) => {
         <p>{content}</p>
       </div>
       <div className="post-actions">
-        <div className="cur-p">
+        <div className="action">
           <HeartIcon />
+          <p>{likeCount ? likeCount : ''}</p>
         </div>
-        <div className="cur-p">
+        <div className="action">
           <BookmarkIcon />
         </div>
       </div>

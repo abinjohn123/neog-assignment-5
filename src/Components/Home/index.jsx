@@ -23,12 +23,11 @@ const Home = () => {
     isLoading: isPostsLoading,
     fetchPosts,
   } = usePosts();
-  const { allUsers, isLoading: isUsersLoading, fetchUsers } = useUser();
+  const { allUsers, isLoading: isUsersLoading } = useUser();
   const [sort, setSort] = useState(SORT_KEYS.TRENDING);
 
   useEffect(() => {
     fetchPosts();
-    fetchUsers();
   }, []);
 
   useEffect(() => {

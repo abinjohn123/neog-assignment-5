@@ -1,0 +1,36 @@
+@import '../../reuse';
+
+.profile-card {
+  padding: 16px;
+  border-radius: 8px;
+  border: $border-gray-1;
+  background-color: $dark-2;
+  text-align: center;
+
+  .img-card {
+    margin: 0 auto;
+    margin-bottom: 12px;
+    height: 196px;
+    width: 196px;
+
+    img {
+      height: 100%;
+    }
+  }
+
+  .container {
+    @extend .d-flex;
+    margin-bottom: 8px;
+    gap: 8px;
+  }
+
+  .name {
+    font-size: 2.4rem;
+  }
+  .web-url {
+    @extend .d-flex;
+  }
+  .bio {
+    font-style: italic;
+  }
+}

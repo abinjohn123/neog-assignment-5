@@ -6,6 +6,22 @@
   justify-content: flex-start;
 
   .header-actions {
+    @extend .d-flex;
+    gap: 12px;
     margin-left: auto;
+  }
+
+  .avatar {
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+
+    &:hover {
+      outline: 2px solid $primary-1;
+    }
+
+    img {
+      height: 100%;
+    }
   }
 }

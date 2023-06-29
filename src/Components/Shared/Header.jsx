@@ -1,11 +1,31 @@
-import { useNavigate } from 'react-router';
+import { useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 
 import { useAuthContext } from '../../context/AuthContext';
+import useUser from '../../hooks/useUser';
 import './shared.scss';
+
+const ProfileIcon = ({ userId }) => {
+  const { user, fetchUser } = useUser();
+  useEffect(() => fetchUser(userId), [userId]);
+
+  return (
+    user && (
+      <div className="avatar">
+        <img src={user.avatar} alt={user.username} />
+      </div>
+    )
+  );
+};
 
 const Header = () => {
   const navigate = useNavigate();
-  const { isLoggedIn, setToken } = useAuthContext();
+  const { isLoggedIn, setToken, username } = useAuthContext();
+  const { allUsers, isLoading } = useUser();
+
+  const loggedInUser = !!allUsers
+    ? allUsers.find((user) => user.username === username)
+    : {};
 
   const handleLoginClick = () => {
     if (isLoggedIn) setToken(null);
@@ -16,6 +36,11 @@ const Header = () => {
     <header className="app-header">
       <h1>key.club</h1>
       <div className="header-actions">
+        {loggedInUser?._id && (
+          <Link to={`/${loggedInUser._id}`}>
+            <ProfileIcon userId={loggedInUser._id} />
+          </Link>
+        )}
         <button className="btn" onClick={handleLoginClick}>
           {isLoggedIn ? 'Log out' : 'Log in'}
         </button>

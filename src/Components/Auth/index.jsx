@@ -23,8 +23,6 @@ const Authenticate = ({ isNewUser = false }) => {
       password: e.target[1].value,
     };
 
-    console.log(payload);
-
     if (isSignup) {
       payload.email = e.target[3].value;
       payload.firstName = e.target[4].value;

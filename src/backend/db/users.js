@@ -14,6 +14,7 @@ export const users = [
     password: 'adarshBalika123',
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    avatar: '/avatars/1.png',
   },
   {
     _id: uuid(),
@@ -23,5 +24,16 @@ export const users = [
     password: 'saadanam123',
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    avatar: '/avatars/3.png',
+  },
+  {
+    _id: uuid(),
+    firstName: 'Shubham',
+    lastName: 'Soni',
+    username: 'shubhamsoni',
+    password: 'shubhamsoni123',
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+    avatar: '/avatars/4.png',
   },
 ];

@@ -1,8 +1,17 @@
-import { useState } from 'react';
-import './App.scss';
+import { Routes, Route } from 'react-router-dom';
+import Mockman from 'mockman-js';
+
+import Home from './Components/Home';
 
 function App() {
-  return <h1>Hello, world</h1>;
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/mockman" element={<Mockman colorScheme="dark" />} />
+      </Routes>
+    </>
+  );
 }
 
 export default App;

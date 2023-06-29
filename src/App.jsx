@@ -10,13 +10,12 @@ function App() {
   return (
     <>
       <Header />
-      <div className="layout">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Authenticate />} />
-          <Route path="/mockman" element={<Mockman colorScheme="dark" />} />
-        </Routes>
-      </div>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Authenticate />} />
+        <Route path="/mockman" element={<Mockman colorScheme="dark" />} />
+      </Routes>
     </>
   );
 }

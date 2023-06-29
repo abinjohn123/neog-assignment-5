@@ -50,7 +50,7 @@ const Home = () => {
 
   if (isPostsLoading || allPosts.length === 0) return <p>Loading...</p>;
   return (
-    <>
+    <div className="layout">
       <div className="feed">
         <div className="sort-card">
           <h3>Posts</h3>
@@ -76,7 +76,7 @@ const Home = () => {
         })}
       </div>
       <Sidebar />
-    </>
+    </div>
   );
 };
 

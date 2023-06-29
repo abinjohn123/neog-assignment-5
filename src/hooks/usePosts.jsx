@@ -16,6 +16,7 @@ const usePosts = () => {
 
   return {
     allPosts,
+    setAllPosts,
     isLoading,
     fetchPosts,
   };

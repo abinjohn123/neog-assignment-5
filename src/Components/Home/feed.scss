@@ -4,6 +4,41 @@
   padding: 24px;
 }
 
+.sort-card {
+  padding: 16px;
+  border-radius: 8px;
+  border: $border-gray-1;
+  background-color: $dark-2;
+  margin-bottom: 16px;
+  position: sticky;
+
+  h3 {
+    margin-bottom: 12px;
+  }
+  .sort-controls {
+    @extend .d-flex;
+
+    button {
+      @extend .btn;
+      width: 100%;
+      padding: 8px;
+      background-color: $dark-2;
+      color: $white-1;
+      border: $border-gray-1;
+      font-weight: 600;
+      letter-spacing: 0.04cm;
+
+      &:hover,
+      &.active {
+        background-color: $dark-1;
+      }
+
+      &.active {
+        color: $primary-1;
+      }
+    }
+  }
+}
 .post-card {
   @extend .cur-p;
   padding: 16px;

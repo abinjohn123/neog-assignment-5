@@ -17,7 +17,7 @@ export const posts = [
       dislikedBy: [],
     },
     username: 'adarshbalika',
-    createdAt: formatDate(),
+    createdAt: '2023-06-29T08:28:42.815Z',
     updatedAt: formatDate(),
   },
   {
@@ -30,7 +30,7 @@ export const posts = [
       dislikedBy: [],
     },
     username: 'shubhamsoni',
-    createdAt: formatDate(),
+    createdAt: '2023-06-28T08:28:42.815Z',
     updatedAt: formatDate(),
   },
   {
@@ -56,7 +56,7 @@ export const posts = [
       dislikedBy: [],
     },
     username: 'adarshbalika',
-    createdAt: formatDate(),
+    createdAt: '2023-06-25T08:28:42.815Z',
     updatedAt: formatDate(),
   },
   {
@@ -64,12 +64,12 @@ export const posts = [
     content:
       "Exploring different switch options for my next build. It's incredible how a small piece of metal can make such a difference in typing feel. 🔄⌨️",
     likes: {
-      likeCount: 7,
+      likeCount: 700,
       likedBy: [],
       dislikedBy: [],
     },
     username: 'shubhamsoni',
-    createdAt: formatDate(),
+    createdAt: '2023-04-29T08:28:42.815Z',
     updatedAt: formatDate(),
   },
   {
@@ -82,7 +82,7 @@ export const posts = [
       dislikedBy: [],
     },
     username: 'thatsaadanam',
-    createdAt: formatDate(),
+    createdAt: '2023-07-01T08:28:42.815Z',
     updatedAt: formatDate(),
   },
 ];

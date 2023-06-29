@@ -34,13 +34,11 @@ const Home = () => {
   useEffect(() => {
     if (isPostsLoading || allPosts.length === 0) return;
 
-    if (sort === SORT_KEYS.TRENDING) {
-      console.log('TREND SORT');
+    if (sort === SORT_KEYS.TRENDING)
       setAllPosts(
         [...allPosts].sort((a, b) => b.likes?.likeCount - a.likes?.likeCount)
       );
-    } else if (sort === SORT_KEYS.LATEST) {
-      console.log('LATEST SORT');
+    else if (sort === SORT_KEYS.LATEST)
       setAllPosts(
         [...allPosts].sort((a, b) => {
           const date1 = new Date(a.createdAt);
@@ -48,10 +46,7 @@ const Home = () => {
           return date2 - date1;
         })
       );
-    }
   }, [isPostsLoading, sort]);
-
-  useEffect(() => console.log('posts changed', allPosts), [allPosts]);
 
   if (isPostsLoading || allPosts.length === 0) return <p>Loading...</p>;
   return (

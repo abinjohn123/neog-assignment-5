@@ -1,12 +1,14 @@
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router';
 
 import useUser from '../../hooks/useUser';
 import { getFullName } from '../../utils';
 
 const UserCard = ({ user }) => {
-  const { avatar, firstName, lastName, username } = user;
+  const { avatar, firstName, lastName, username, _id } = user;
+  const navigate = useNavigate();
   return (
-    <div className="user-card">
+    <div className="user-card" onClick={() => navigate(`/${_id}`)}>
       <div className="avatar">
         <img src={avatar ?? '/avatars/1.png'} alt={username} />
       </div>

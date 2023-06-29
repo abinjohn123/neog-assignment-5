@@ -11,7 +11,6 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/mockman" element={<Mockman colorScheme="dark" />} />
       </Routes>
-      <Sidebar />
     </>
   );
 }

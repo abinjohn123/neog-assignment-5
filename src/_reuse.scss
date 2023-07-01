@@ -17,6 +17,7 @@ $light-4: #babfc8;
 $white-1: #fffffe;
 
 $primary-1: #3286fc;
+$primary-1--dark: #1573f8;
 
 // border
 $border-gray-1: 1px solid rgba(220, 220, 221, 0.3);
@@ -50,4 +51,33 @@ $border-gray-1: 1px solid rgba(220, 220, 221, 0.3);
   border: none;
   outline: none;
   padding: 4px 8px;
+}
+
+.btn-gray {
+  margin-left: auto;
+  border-radius: 4px;
+  background-color: $light-2;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: $light-4;
+  }
+}
+
+.modal {
+  @extend .card;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  backdrop-filter: blur(10px);
 }

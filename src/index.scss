@@ -32,3 +32,7 @@ body {
   gap: 32px;
   grid-template-columns: 1fr auto;
 }
+
+.overlay-enabled {
+  overflow: hidden;
+}

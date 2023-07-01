@@ -11,7 +11,7 @@ const useUser = () => {
   const fetchUsers = () => {
     setIsLoading(true);
 
-    fetch('api/users/')
+    fetch('/api/users/')
       .then((res) => res.json())
       .then((data) => setAllUsers(data.users))
       .catch((err) => console.log(err))
@@ -21,7 +21,7 @@ const useUser = () => {
   const fetchUser = (userId) => {
     setIsLoading(true);
 
-    fetch(`api/users/${userId}`)
+    fetch(`/api/users/${userId}`)
       .then((res) => res.json())
       .then((data) => setUser({ ...data.user }))
       .catch((err) => console.log(err))
@@ -29,8 +29,7 @@ const useUser = () => {
   };
 
   const editUser = (userData) => {
-    console.log('UDATA', userData);
-    fetch(`api/users/edit`, {
+    fetch(`/api/users/edit`, {
       method: 'POST',
       headers: {
         authorization: token,

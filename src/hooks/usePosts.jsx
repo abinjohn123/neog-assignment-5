@@ -7,7 +7,7 @@ const usePosts = () => {
   const fetchPosts = () => {
     setIsLoading(true);
 
-    fetch('api/posts/')
+    fetch('/api/posts/')
       .then((res) => res.json())
       .then((data) => setAllPosts(data.posts))
       .catch((err) => console.log(err))

@@ -40,7 +40,7 @@ const Header = () => {
 
       <div className="header-actions">
         {loggedInUser?._id && (
-          <Link to={`/${loggedInUser._id}`}>
+          <Link to={`/user/${loggedInUser._id}`}>
             <ProfileIcon userId={loggedInUser._id} />
           </Link>
         )}

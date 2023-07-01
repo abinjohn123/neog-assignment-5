@@ -9,7 +9,7 @@ const UserCard = ({ user }) => {
   const { avatar, firstName, lastName, username, _id } = user;
   const navigate = useNavigate();
   return (
-    <div className="user-card" onClick={() => navigate(`/${_id}`)}>
+    <div className="user-card" onClick={() => navigate(`/user/${_id}`)}>
       <div className="avatar">
         <img src={avatar ?? '/avatars/1.png'} alt={username} />
       </div>

@@ -15,7 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Authenticate />} />
-        <Route path="/:userId/" element={<Profile />} />
+        <Route path="/user/:userId/" element={<Profile />} />
         <Route path="/mockman" element={<Mockman colorScheme="dark" />} />
       </Routes>
     </>

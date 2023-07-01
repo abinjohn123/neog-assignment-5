@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 
 import useUser from '../../hooks/useUser';
 import { getFullName } from '../../utils';
+import { useAuthContext } from '../../context/AuthContext';
 
 const UserCard = ({ user }) => {
   const { avatar, firstName, lastName, username, _id } = user;
@@ -23,18 +24,20 @@ const UserCard = ({ user }) => {
 
 const Suggestions = () => {
   const { fetchUsers, isLoading, allUsers } = useUser();
+  const { username = '' } = useAuthContext();
 
   useEffect(fetchUsers, []);
 
   if (isLoading || !Boolean(allUsers.length)) return <p>Loading...</p>;
-
   return (
     <div className="suggestions-card">
       <h3>Suggested for you</h3>
       <div className="suggestion-list">
-        {allUsers.map((user) => (
-          <UserCard user={user} key={user._id} />
-        ))}
+        {allUsers
+          .filter((user) => user.username !== username)
+          .map((user) => (
+            <UserCard user={user} key={user._id} />
+          ))}
       </div>
     </div>
   );

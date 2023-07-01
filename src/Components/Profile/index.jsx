@@ -1,16 +1,21 @@
+import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
 import useUser from '../../hooks/useUser';
+import { useAuthContext } from '../../context/AuthContext';
 import { useEffect } from 'react';
 
 import { getFullName } from '../../utils';
-import { GlobeIcon } from '../../icons/svg';
 import { ProfileFeed } from './Feed';
+import { EditProfileModal } from './EditProfileModa';
+import { GlobeIcon } from '../../icons/svg';
 import './profile.scss';
 
 const Profile = () => {
   const { userId } = useParams();
   const { fetchUser, isLoading, user } = useUser();
+  const { username } = useAuthContext();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     if (userId) fetchUser(userId);
@@ -27,13 +32,24 @@ const Profile = () => {
 
         <div className="container">
           <p className="name">{getFullName(user.firstName, user.lastName)}</p>
-          <Link to={user.link ?? '/'} className="web-url">
+          <a href={user.link || '/'} className="web-url" target="_blank">
             <GlobeIcon />
-          </Link>
+          </a>
         </div>
-        <p className="bio">{user.bio ?? 'A catchy bio goes here'}</p>
+        <p className="bio">{user.bio || 'A catchy bio goes here'}</p>
+        {user.username === username && (
+          <button
+            className="btn edit-profile-btn"
+            onClick={() => setIsModalOpen(true)}
+          >
+            Edit profile
+          </button>
+        )}
       </div>
       <ProfileFeed profile={user} />
+      {isModalOpen && (
+        <EditProfileModal profile={user} setIsModalOpen={setIsModalOpen} />
+      )}
     </>
   );
 };

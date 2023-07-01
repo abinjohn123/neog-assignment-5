@@ -5,10 +5,11 @@ import { useAppContext } from '../context/AppContext';
 
 const useUser = () => {
   const [isLoading, setIsLoading] = useState([]);
-  const { token } = useAuthContext();
-  const { allUsers, setAllUsers, user, setUser } = useAppContext();
+  const [fetchedUser, setFetchedUser] = useState({});
+  const { token, setLoggedInUser } = useAuthContext();
+  const { allUsers, setAllUsers } = useAppContext();
 
-  const fetchUsers = () => {
+  const fetchAllUsers = () => {
     setIsLoading(true);
 
     fetch('/api/users/')
@@ -18,12 +19,12 @@ const useUser = () => {
       .finally(() => setIsLoading(false));
   };
 
-  const fetchUser = (userId) => {
+  const fetchSingleUser = (userId) => {
     setIsLoading(true);
 
     fetch(`/api/users/${userId}`)
       .then((res) => res.json())
-      .then((data) => setUser({ ...data.user }))
+      .then((data) => setFetchedUser({ ...data.user }))
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
   };
@@ -38,19 +39,21 @@ const useUser = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setUser({ ...data.user });
+        // fetchSingleUser(data.user._id);
+        setLoggedInUser({ ...data.user });
+        fetchAllUsers();
       })
       .catch((err) => console.log(err));
   };
 
-  useEffect(fetchUsers, []);
+  useEffect(fetchAllUsers, []);
 
   return {
     allUsers,
-    user,
+    fetchedUser,
     isLoading,
-    fetchUsers,
-    fetchUser,
+    fetchAllUsers,
+    fetchSingleUser,
     editUser,
   };
 };

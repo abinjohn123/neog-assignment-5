@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
 import useUser from '../../hooks/useUser';
@@ -23,10 +22,10 @@ const UserCard = ({ user }) => {
 };
 
 const Suggestions = () => {
-  const { fetchUsers, isLoading, allUsers } = useUser();
-  const { username = '' } = useAuthContext();
-
-  useEffect(fetchUsers, []);
+  const { isLoading, allUsers } = useUser();
+  const {
+    loggedInUser: { username = '' },
+  } = useAuthContext();
 
   if (isLoading || !Boolean(allUsers.length)) return <p>Loading...</p>;
   return (

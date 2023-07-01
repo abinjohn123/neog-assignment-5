@@ -1,8 +1,9 @@
+import { useAppContext } from '../context/AppContext';
 import { useAuthContext } from '../context/AuthContext';
 import { noop } from '../utils';
 
 const useAuth = () => {
-  const { setToken } = useAuthContext();
+  const { setToken, setLoggedInUser } = useAuthContext();
 
   const logIn = (payload, successCb = noop) => {
     fetch('/api/auth/login', {
@@ -13,6 +14,7 @@ const useAuth = () => {
       .then((data) => {
         if (data.encodedToken) {
           setToken(data.encodedToken);
+          setLoggedInUser(data.foundUser);
           successCb();
         }
         if (data.errors) console.log(data);
@@ -29,6 +31,7 @@ const useAuth = () => {
       .then((data) => {
         if (data.encodedToken) {
           setToken(data.encodedToken);
+          setLoggedInUser(data.foundUser);
           successCb();
         }
         if (data.errors) console.log(data);

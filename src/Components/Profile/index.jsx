@@ -13,13 +13,13 @@ import './profile.scss';
 
 const Profile = () => {
   const { userId } = useParams();
-  const { fetchUser, isLoading, user } = useUser();
-  const { username } = useAuthContext();
+  const { fetchSingleUser, isLoading, fetchedUser } = useUser();
+  const { loggedInUser } = useAuthContext();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    if (userId) fetchUser(userId);
-  }, [userId]);
+    fetchSingleUser(userId);
+  }, [userId, loggedInUser]);
 
   if (isLoading) return <p>Loading...</p>;
 
@@ -27,17 +27,19 @@ const Profile = () => {
     <>
       <div className="profile-card">
         <div className="img-card">
-          <img src={user.avatar} username={user.username} />
+          <img src={fetchedUser.avatar} username={fetchedUser.username} />
         </div>
 
         <div className="container">
-          <p className="name">{getFullName(user.firstName, user.lastName)}</p>
-          <a href={user.link || '/'} className="web-url" target="_blank">
+          <p className="name">
+            {getFullName(fetchedUser.firstName, fetchedUser.lastName)}
+          </p>
+          <a href={fetchedUser.link || '/'} className="web-url" target="_blank">
             <GlobeIcon />
           </a>
         </div>
-        <p className="bio">{user.bio || 'A catchy bio goes here'}</p>
-        {user.username === username && (
+        <p className="bio">{fetchedUser.bio || 'A catchy bio goes here'}</p>
+        {fetchedUser.username === loggedInUser.username && (
           <button
             className="btn edit-profile-btn"
             onClick={() => setIsModalOpen(true)}
@@ -46,9 +48,12 @@ const Profile = () => {
           </button>
         )}
       </div>
-      <ProfileFeed profile={user} />
+      <ProfileFeed profile={fetchedUser} />
       {isModalOpen && (
-        <EditProfileModal profile={user} setIsModalOpen={setIsModalOpen} />
+        <EditProfileModal
+          profile={fetchedUser}
+          setIsModalOpen={setIsModalOpen}
+        />
       )}
     </>
   );

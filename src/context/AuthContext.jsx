@@ -8,17 +8,26 @@ const AuthProvider = ({ children }) => {
     Boolean(localStorage.getItem('token')) || false
   );
   const [token, setToken] = useState(localStorage.getItem('token') || null);
-  const [username, setUsername] = useState('');
-  const contextValue = { isLoggedIn, token, setToken, username, setUsername };
+  const [loggedInUser, setLoggedInUser] = useState({});
+  const contextValue = {
+    isLoggedIn,
+    token,
+    setToken,
+    loggedInUser,
+    setLoggedInUser,
+  };
 
   useEffect(() => {
     if (token) {
       setIsLoggedIn(true);
-      setUsername(jwtDecode(token)?.username);
+      setLoggedInUser({
+        ...loggedInUser,
+        username: jwtDecode(token)?.username,
+      });
       localStorage.setItem('token', token);
     } else {
       setIsLoggedIn(false);
-      setUsername(null);
+      setLoggedInUser({});
       localStorage.removeItem('token');
     }
   }, [token]);

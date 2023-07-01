@@ -5,9 +5,9 @@ import { useAuthContext } from '../../context/AuthContext';
 import useUser from '../../hooks/useUser';
 import './shared.scss';
 
-const ProfileIcon = ({ userId }) => {
-  const { user, fetchUser } = useUser();
-  useEffect(() => fetchUser(userId), [userId]);
+const ProfileIcon = ({ user }) => {
+  // const { user, fetchUser } = useUser();
+  // useEffect(() => fetchUser(userId), [userId]);
 
   return (
     user && (
@@ -20,7 +20,11 @@ const ProfileIcon = ({ userId }) => {
 
 const Header = () => {
   const navigate = useNavigate();
-  const { isLoggedIn, setToken, username } = useAuthContext();
+  const {
+    isLoggedIn,
+    setToken,
+    loggedInUser: { username = '' },
+  } = useAuthContext();
   const { allUsers, isLoading } = useUser();
 
   const loggedInUser = !!allUsers
@@ -41,7 +45,7 @@ const Header = () => {
       <div className="header-actions">
         {loggedInUser?._id && (
           <Link to={`/user/${loggedInUser._id}`}>
-            <ProfileIcon userId={loggedInUser._id} />
+            <ProfileIcon user={loggedInUser} />
           </Link>
         )}
         <button className="btn" onClick={handleLoginClick}>

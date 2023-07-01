@@ -107,16 +107,7 @@
     }
 
     &.--submit {
-      background-color: $primary-1;
-      color: $white-1;
-
-      padding: 8px 16px;
-      border-radius: 4px;
-      transition: background-color 0.3s;
-
-      &:hover {
-        background-color: $primary-1--dark;
-      }
+      @extend .btn-primary;
     }
   }
 }

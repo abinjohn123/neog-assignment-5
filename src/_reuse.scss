@@ -64,6 +64,19 @@ $border-gray-1: 1px solid rgba(220, 220, 221, 0.3);
   }
 }
 
+.btn-primary {
+  background-color: $primary-1;
+  color: $white-1;
+
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: $primary-1--dark;
+  }
+}
+
 .modal {
   @extend .card;
   position: absolute;

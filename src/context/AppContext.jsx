@@ -4,8 +4,9 @@ const AppContext = createContext({});
 
 const AppProvider = ({ children }) => {
   const [allUsers, setAllUsers] = useState([]);
+  const [allPosts, setAllPosts] = useState([]);
 
-  const contextValue = { allUsers, setAllUsers };
+  const contextValue = { allUsers, setAllUsers, allPosts, setAllPosts };
 
   return (
     <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>

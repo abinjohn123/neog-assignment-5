@@ -4,6 +4,7 @@ import usePosts from '../../hooks/usePosts';
 import useUser from '../../hooks/useUser';
 import { Post } from './Post';
 import Sidebar from '../Sidebar';
+import { NewPost } from './NewPost';
 
 import './feed.scss';
 
@@ -24,7 +25,8 @@ const Home = () => {
     fetchPosts,
   } = usePosts();
   const { allUsers, isLoading: isUsersLoading } = useUser();
-  const [sort, setSort] = useState(SORT_KEYS.TRENDING);
+  const [sort, setSort] = useState(SORT_KEYS.LATEST);
+  const [sortedPosts, setSortedPosts] = useState([]);
 
   useEffect(() => {
     fetchPosts();
@@ -34,23 +36,24 @@ const Home = () => {
     if (isPostsLoading || allPosts.length === 0) return;
 
     if (sort === SORT_KEYS.TRENDING)
-      setAllPosts(
+      setSortedPosts(
         [...allPosts].sort((a, b) => b.likes?.likeCount - a.likes?.likeCount)
       );
     else if (sort === SORT_KEYS.LATEST)
-      setAllPosts(
+      setSortedPosts(
         [...allPosts].sort((a, b) => {
           const date1 = new Date(a.createdAt);
           const date2 = new Date(b.createdAt);
           return date2 - date1;
         })
       );
-  }, [isPostsLoading, sort]);
+  }, [allPosts, sort]);
 
   if (isPostsLoading || allPosts.length === 0) return <p>Loading...</p>;
   return (
     <div className="layout">
       <div className="feed">
+        <NewPost />
         <div className="sort-card">
           <h3>Posts</h3>
           <div className="sort-controls">
@@ -68,7 +71,7 @@ const Home = () => {
             </button>
           </div>
         </div>
-        {allPosts.map((post) => {
+        {sortedPosts.map((post) => {
           const postAuthor =
             allUsers.find((user) => user.username === post.username) ?? {};
           return <Post post={post} key={post._id} author={postAuthor} />;

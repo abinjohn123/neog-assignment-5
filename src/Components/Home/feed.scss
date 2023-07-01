@@ -6,10 +6,7 @@
 }
 
 .sort-card {
-  padding: 16px;
-  border-radius: 8px;
-  border: $border-gray-1;
-  background-color: $dark-2;
+  @extend .card;
   margin-bottom: 16px;
   position: sticky;
 
@@ -41,11 +38,8 @@
   }
 }
 .post-card {
+  @extend .card;
   @extend .cur-p;
-  padding: 16px;
-  border-radius: 8px;
-  border: $border-gray-1;
-  background-color: $dark-2;
   margin-bottom: 16px;
   transition: background-color 0.2s;
 

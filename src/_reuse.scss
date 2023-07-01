@@ -26,6 +26,14 @@ $border-gray-1: 1px solid rgba(220, 220, 221, 0.3);
   HELPERS
 ************
 */
+
+.card {
+  padding: 16px;
+  border-radius: 8px;
+  border: $border-gray-1;
+  background-color: $dark-2;
+}
+
 .d-flex {
   display: flex;
   justify-content: center;

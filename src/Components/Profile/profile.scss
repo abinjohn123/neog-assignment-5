@@ -1,11 +1,8 @@
 @import '../../reuse';
 
 .profile-card {
-  padding: 16px;
+  @extend .card;
   margin-bottom: 24px;
-  border-radius: 8px;
-  border: $border-gray-1;
-  background-color: $dark-2;
   text-align: center;
 
   .img-card {

@@ -1,10 +1,7 @@
 @import '../../_reuse.scss';
 
 .suggestions-card {
-  padding: 16px;
-  border-radius: 8px;
-  border: $border-gray-1;
-  background-color: $dark-2;
+  @extend .card;
   margin-bottom: 16px;
   min-width: 340px;
 

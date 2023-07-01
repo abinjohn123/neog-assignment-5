@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
 
+import { useAuthContext } from '../context/AuthContext';
+import { useAppContext } from '../context/AppContext';
+
 const useUser = () => {
-  const [allUsers, setAllUsers] = useState([]);
-  const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState([]);
+  const { token } = useAuthContext();
+  const { allUsers, setAllUsers, user, setUser } = useAppContext();
 
   const fetchUsers = () => {
     setIsLoading(true);
@@ -20,9 +23,25 @@ const useUser = () => {
 
     fetch(`api/users/${userId}`)
       .then((res) => res.json())
-      .then((data) => setUser(data.user))
+      .then((data) => setUser({ ...data.user }))
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
+  };
+
+  const editUser = (userData) => {
+    console.log('UDATA', userData);
+    fetch(`api/users/edit`, {
+      method: 'POST',
+      headers: {
+        authorization: token,
+      },
+      body: JSON.stringify({ userData }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setUser({ ...data.user });
+      })
+      .catch((err) => console.log(err));
   };
 
   useEffect(fetchUsers, []);
@@ -33,6 +52,7 @@ const useUser = () => {
     isLoading,
     fetchUsers,
     fetchUser,
+    editUser,
   };
 };
 

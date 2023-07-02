@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router';
 import { HeartIcon, BookmarkIcon } from '../../icons/svg';
 import { getFullName } from '../../utils';
 
+import { PostActions } from './PostActions';
 import { useAuthContext } from '../../context/AuthContext';
 import usePosts from '../../hooks/usePosts';
 import useUser from '../../hooks/useUser';
@@ -81,17 +82,22 @@ export const Post = ({ post, author }) => {
             </div>
             <p className="creation">{dateFormat(createdAt)}</p>
           </div>
+          {loggedInUser.username === username && <PostActions />}
         </div>
       </div>
       <div className="post-content">
         <p>{content}</p>
       </div>
-      <div className="post-actions">
-        <div className="action" onClick={handlePostLike} ref={likeRef}>
+      <div className="post-interactions">
+        <div className="interaction" onClick={handlePostLike} ref={likeRef}>
           <HeartIcon />
           <p>{likeCount ? likeCount : ''}</p>
         </div>
-        <div className="action" ref={bookMarkRef} onClick={handlePostBookmark}>
+        <div
+          className="interaction"
+          ref={bookMarkRef}
+          onClick={handlePostBookmark}
+        >
           <BookmarkIcon />
         </div>
       </div>

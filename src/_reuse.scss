@@ -19,6 +19,10 @@ $white-1: #fffffe;
 $primary-1: #3286fc;
 $primary-1--dark: #1573f8;
 
+$danger-1: #f87171;
+$danger-2: #dc2626;
+$danger-3: #ef4444;
+
 // border
 $border-gray-1: 1px solid rgba(220, 220, 221, 0.3);
 
@@ -74,6 +78,15 @@ $border-gray-1: 1px solid rgba(220, 220, 221, 0.3);
 
   &:hover {
     background-color: $primary-1--dark;
+  }
+}
+
+.btn-danger {
+  background-color: $danger-2;
+  color: $white-1;
+
+  &:hover {
+    background-color: $danger-3;
   }
 }
 

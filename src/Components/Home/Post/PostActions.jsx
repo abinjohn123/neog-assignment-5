@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { KebabIcon } from '../../../icons/svg';
 
 import EditPost from './EditPost';
+import DeletePostModal from './DeletePost';
 
 export const PostActions = ({ postId }) => {
   const [isActionsOpen, setIsActionsOpen] = useState(false);
@@ -19,6 +20,12 @@ export const PostActions = ({ postId }) => {
     e.stopPropagation();
     closeMenu();
     setIsEditModalOpen(true);
+  };
+
+  const openDeleteModal = (e) => {
+    e.stopPropagation();
+    closeMenu();
+    setIsDeleteModalOpen(true);
   };
 
   useEffect(() => {
@@ -40,11 +47,19 @@ export const PostActions = ({ postId }) => {
           <p className="edit" onClick={openEditModal}>
             Edit
           </p>
-          <p className="delete">Delete</p>
+          <p className="delete" onClick={openDeleteModal}>
+            Delete
+          </p>
         </div>
       )}
       {isEditModalOpen && (
         <EditPost setIsModalOpen={setIsEditModalOpen} postId={postId} />
+      )}
+      {isDeleteModalOpen && (
+        <DeletePostModal
+          setIsModalOpen={setIsDeleteModalOpen}
+          postId={postId}
+        />
       )}
     </div>
   );

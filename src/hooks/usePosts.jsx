@@ -88,16 +88,21 @@ const usePosts = () => {
       .finally(() => setIsLoading(false));
   };
 
-  const deletePost = (postId) => {
-    fetch(`/api/posts/delete/${postId}`, {
+  const deletePost = (postId, SuccessCallback) => {
+    setIsLoading(true);
+    fetch(`/api/posts/${postId}`, {
       method: 'DELETE',
       headers: {
         authorization: token,
       },
     })
       .then((res) => res.json())
-      .then((data) => fetchPosts())
-      .catch((err) => console.log(err));
+      .then((data) => {
+        fetchPosts();
+        SuccessCallback();
+      })
+      .catch((err) => console.log(err))
+      .finally(() => setIsLoading(false));
   };
 
   return {

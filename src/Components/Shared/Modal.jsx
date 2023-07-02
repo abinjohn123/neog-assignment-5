@@ -2,7 +2,12 @@ import { useEffect } from 'react';
 import { CrossIcon } from '../../icons/svg';
 import { noop } from '../../utils';
 
-const Modal = ({ setIsModalOpen = noop, children, width = null }) => {
+const Modal = ({
+  setIsModalOpen = noop,
+  children,
+  width = null,
+  className = '',
+}) => {
   const stopPropagation = (e) => e.stopPropagation();
   const closeModal = () => setIsModalOpen(false);
 
@@ -19,7 +24,11 @@ const Modal = ({ setIsModalOpen = noop, children, width = null }) => {
 
   return (
     <>
-      <div className="modal" onClick={stopPropagation} style={{ width }}>
+      <div
+        className={`modal ${className}`}
+        onClick={stopPropagation}
+        style={{ width }}
+      >
         <div className="modal-cross-icon" onClick={closeModal}>
           <CrossIcon />
         </div>

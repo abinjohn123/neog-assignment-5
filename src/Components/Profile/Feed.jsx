@@ -9,6 +9,10 @@ export const ProfileFeed = ({ profile = {} }) => {
   const { loggedInUser = '' } = useAuthContext();
   const { allPosts } = useAppContext();
 
+  const ProfilePosts = allPosts.filter(
+    (post) => post.username === profile.username
+  );
+
   return (
     <div className="profile-feed">
       <h3 className="profile-h3">
@@ -18,11 +22,15 @@ export const ProfileFeed = ({ profile = {} }) => {
       </h3>
       <div className="layout">
         <div>
-          {allPosts
-            .filter((post) => post.username === profile.username)
-            .map((post) => {
-              return <Post post={post} key={post._id} author={profile} />;
-            })}
+          {Boolean(ProfilePosts.length) ? (
+            <>
+              {ProfilePosts.map((post) => {
+                return <Post post={post} key={post._id} author={profile} />;
+              })}
+            </>
+          ) : (
+            <p>{getFirstName(profile.firstName)} hasn't posted anything yet.</p>
+          )}
         </div>
         <Sidebar />
       </div>

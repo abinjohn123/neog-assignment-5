@@ -8,11 +8,12 @@ const Modal = ({ setIsModalOpen = noop, children }) => {
 
   useEffect(() => {
     document.querySelector('body').classList.add('overlay-enabled');
-    document.querySelector('body').addEventListener('click', closeModal);
+    document
+      .querySelector('#overlay-element')
+      .addEventListener('click', closeModal);
 
     return () => {
       document.querySelector('body').classList.remove('overlay-enabled');
-      document.querySelector('body').removeEventListener('click', closeModal);
     };
   }, []);
 
@@ -24,7 +25,7 @@ const Modal = ({ setIsModalOpen = noop, children }) => {
         </div>
         {children}
       </div>
-      <div className="overlay" />
+      <div id="overlay-element" className="overlay" onClick={stopPropagation} />
     </>
   );
 };

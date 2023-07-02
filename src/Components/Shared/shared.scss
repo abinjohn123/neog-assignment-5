@@ -16,6 +16,11 @@
     color: $primary-1;
   }
 
+  .logo {
+    font-family: 'VT323', monospace;
+    font-size: 3rem;
+  }
+
   .header-actions {
     @extend .d-flex;
     gap: 12px;

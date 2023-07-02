@@ -32,10 +32,10 @@ export const ProfileFeed = ({ profile = {} }) => {
           ) : (
             <VoidSVG
               content={
-                profile.username === loggedInUser.username
+                (profile.username === loggedInUser.username
                   ? "You haven't"
-                  : `${getFirstName(profile.firstName)} hasn't ` +
-                    'posted anything yet'
+                  : `${getFirstName(profile.firstName)} hasn't `) +
+                'posted anything yet'
               }
             />
           )}

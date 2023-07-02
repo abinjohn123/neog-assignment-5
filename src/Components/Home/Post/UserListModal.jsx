@@ -1,7 +1,5 @@
 import Modal from '../../Shared/Modal';
-
-import VoidSVG from '../../../assets/illustrations/void.svg';
-
+import VoidSVG from '../../Shared/Void';
 import { UserCard } from '../../Sidebar/Suggestions';
 
 const UserListModal = ({ setIsModalOpen, userList }) => {
@@ -10,12 +8,7 @@ const UserListModal = ({ setIsModalOpen, userList }) => {
     <Modal setIsModalOpen={setIsModalOpen} width={400}>
       <h3>{userList.type}</h3>
       {userList.list.length === 0 && (
-        <div className="not-found">
-          <div className="img-container">
-            <img src={VoidSVG} alt="notfound" />
-          </div>
-          <p>No {userList.type.toLowerCase()} found!</p>
-        </div>
+        <VoidSVG content={`No ${userList.type.toLowerCase()} found!`} />
       )}
       {userList.list.map((user) => (
         <UserCard key={user._id} user={user} />

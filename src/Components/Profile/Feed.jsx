@@ -4,9 +4,10 @@ import { getFirstName } from '../../utils';
 import { Post } from '../Home/Post/Post';
 import Sidebar from '../Sidebar';
 import { useAppContext } from '../../context/AppContext';
+import VoidSVG from '../Shared/Void';
 
 export const ProfileFeed = ({ profile = {} }) => {
-  const { loggedInUser = '' } = useAuthContext();
+  const { loggedInUser = {} } = useAuthContext();
   const { allPosts } = useAppContext();
 
   const ProfilePosts = allPosts.filter(
@@ -29,12 +30,14 @@ export const ProfileFeed = ({ profile = {} }) => {
               })}
             </>
           ) : (
-            <p>
-              {profile.username === loggedInUser.username
-                ? "You haven't"
-                : `${getFirstName(profile.firstName)} hasn't`}{' '}
-              posted anything yet.
-            </p>
+            <VoidSVG
+              content={
+                profile.username === loggedInUser.username
+                  ? "You haven't"
+                  : `${getFirstName(profile.firstName)} hasn't ` +
+                    'posted anything yet'
+              }
+            />
           )}
         </div>
         <Sidebar />

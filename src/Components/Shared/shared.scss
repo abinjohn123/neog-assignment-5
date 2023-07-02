@@ -36,3 +36,19 @@
     }
   }
 }
+
+.void-svg {
+  padding: 48px 0;
+  @extend .d-flex;
+  flex-direction: column;
+  gap: 16px;
+  .img-container {
+    height: 164px;
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+}

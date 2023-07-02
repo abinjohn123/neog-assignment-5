@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import { useAuth } from '../../hooks/useAuth';
@@ -9,6 +9,9 @@ const Authenticate = ({ isNewUser = false }) => {
   const [isSignup, setIsSignUp] = useState(isNewUser);
   const navigate = useNavigate();
   const location = useLocation();
+
+  const userNameRef = useRef(null);
+  const passwordRef = useRef(null);
 
   const successCallback = () => {
     const redirectTo = location.state?.from?.pathname || '/';
@@ -35,17 +38,28 @@ const Authenticate = ({ isNewUser = false }) => {
     } else logIn(payload, successCallback);
   };
 
+  const loginWithTestCredentials = () => {
+    const username = 'abin.john';
+    const password = 'thenameisjohn';
+
+    userNameRef.current.value = username;
+    passwordRef.current.value = password;
+    const payload = { username, password };
+
+    setTimeout(() => logIn(payload, successCallback), 200);
+  };
+
   return (
     <>
       <div className="login-form">
         <form onSubmit={handleSubmit}>
           <label>
             <span>Username:</span>
-            <input type="text" required />
+            <input type="text" required ref={userNameRef} />
           </label>
           <label>
             <span>Password:</span>
-            <input type="password" required />
+            <input type="password" required ref={passwordRef} />
           </label>
           {isSignup && (
             <>
@@ -53,10 +67,6 @@ const Authenticate = ({ isNewUser = false }) => {
                 <span>Confirm password:</span>
                 <input type="password" required />
               </label>
-              {/* <label>
-                <span>Email:</span>
-                <input type="email" required />
-              </label> */}
               <label>
                 <span>First name:</span>
                 <input type="text" required />
@@ -67,9 +77,24 @@ const Authenticate = ({ isNewUser = false }) => {
               </label>
             </>
           )}
-          <button type="submit" className="btn-submit">
-            {isSignup ? 'Sign up' : 'Log in'}
-          </button>
+          <div className="btn-row">
+            <button
+              type="submit"
+              className="btn-submit"
+              style={{ gridColumn: !isSignup ? null : '1/-1' }}
+            >
+              {isSignup ? 'Sign up' : 'Log in'}
+            </button>
+            {!isSignup && (
+              <button
+                type="button"
+                className="btn-test"
+                onClick={loginWithTestCredentials}
+              >
+                Sign in with test credentials
+              </button>
+            )}
+          </div>
           <div className="login-nudge">
             {isSignup ? (
               <p>

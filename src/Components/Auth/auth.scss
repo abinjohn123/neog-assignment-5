@@ -28,8 +28,14 @@
     border-radius: 4px;
   }
 
-  .btn-submit {
+  .btn-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
     margin-top: 12px;
+  }
+
+  .btn-submit {
     cursor: pointer;
     font-family: 'inter', sans-serif;
     outline: none;
@@ -38,6 +44,21 @@
     font-size: 1.6rem;
     background-color: $primary-1;
     color: $white-1;
+  }
+
+  .btn-test {
+    @extend .btn;
+    padding: 8px 16px;
+    font-size: 1.6rem;
+    background: none;
+    border: $border-gray-1;
+    border-color: $primary-1;
+    color: $primary-1;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: $light-3;
+    }
   }
 
   .login-nudge {

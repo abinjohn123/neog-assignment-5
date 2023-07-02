@@ -16,6 +16,7 @@ const BookMarks = () => {
 
   return (
     <div className="feed">
+      {bookmarks.length === 0 && <p>No bookmarks yet. Add one today</p>}
       {bookmarks.map((post) => (
         <Post post={post} key={post._id} />
       ))}

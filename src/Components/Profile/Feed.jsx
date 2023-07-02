@@ -29,7 +29,12 @@ export const ProfileFeed = ({ profile = {} }) => {
               })}
             </>
           ) : (
-            <p>{getFirstName(profile.firstName)} hasn't posted anything yet.</p>
+            <p>
+              {profile.username === loggedInUser.username
+                ? "You haven't"
+                : `${getFirstName(profile.firstName)} hasn't`}{' '}
+              posted anything yet.
+            </p>
           )}
         </div>
         <Sidebar />

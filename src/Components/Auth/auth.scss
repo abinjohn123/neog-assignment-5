@@ -23,13 +23,15 @@
     width: 100%;
     outline: none;
     border: $border-gray-1;
+    background-color: $light-1;
+    color: $light-4;
     border-radius: 4px;
   }
 
   .btn-submit {
     margin-top: 12px;
     cursor: pointer;
-    font-family: 'lora', sans-serif;
+    font-family: 'inter', sans-serif;
     outline: none;
     border: none;
     padding: 8px 16px;

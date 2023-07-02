@@ -31,7 +31,7 @@ const useAuth = () => {
       .then((data) => {
         if (data.encodedToken) {
           setToken(data.encodedToken);
-          setLoggedInUser(data.foundUser);
+          setLoggedInUser(data.createdUser);
           successCb();
         }
         if (data.errors) console.log(data);

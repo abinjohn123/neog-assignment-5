@@ -19,16 +19,16 @@ const Authenticate = ({ isNewUser = false }) => {
     e.preventDefault();
 
     const payload = {
-      username: e.target[0].value,
-      password: e.target[1].value,
+      username: e.target[0].value.trim(),
+      password: e.target[1].value.trim(),
     };
 
     if (isSignup) {
-      payload.email = e.target[3].value;
-      payload.firstName = e.target[4].value;
-      payload.lastName = e.target[5].value;
+      payload.avatar = '/avatars/1.png';
+      payload.firstName = e.target[3].value.trim();
+      payload.lastName = e.target[4].value.trim();
 
-      if (e.target[1].value !== e.target[2].value) {
+      if (e.target[1].value !== e.target[2].value.trim()) {
         return console.log('passwords do not match');
       }
       signUp(payload, successCallback);
@@ -53,10 +53,10 @@ const Authenticate = ({ isNewUser = false }) => {
                 <span>Confirm password:</span>
                 <input type="password" required />
               </label>
-              <label>
+              {/* <label>
                 <span>Email:</span>
                 <input type="email" required />
-              </label>
+              </label> */}
               <label>
                 <span>First name:</span>
                 <input type="text" required />

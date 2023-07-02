@@ -1,8 +1,8 @@
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useAuthContext } from '../../context/AuthContext';
-import usePosts from '../../hooks/usePosts';
+import { useAuthContext } from '../../../context/AuthContext';
+import usePosts from '../../../hooks/usePosts';
 
 export const NewPost = () => {
   const formRef = useRef(null);

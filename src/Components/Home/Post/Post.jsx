@@ -1,13 +1,13 @@
 import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router';
 
-import { HeartIcon, BookmarkIcon } from '../../icons/svg';
-import { getFullName } from '../../utils';
+import { HeartIcon, BookmarkIcon } from '../../../icons/svg';
+import { getFullName } from '../../../utils';
 
 import { PostActions } from './PostActions';
-import { useAuthContext } from '../../context/AuthContext';
-import usePosts from '../../hooks/usePosts';
-import useUser from '../../hooks/useUser';
+import { useAuthContext } from '../../../context/AuthContext';
+import usePosts from '../../../hooks/usePosts';
+import useUser from '../../../hooks/useUser';
 
 const dateFormat = (dateObj) => {
   return new Intl.DateTimeFormat('en-Us', {

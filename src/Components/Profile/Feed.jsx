@@ -4,7 +4,7 @@ import { useAuthContext } from '../../context/AuthContext';
 import usePosts from '../../hooks/usePosts';
 import { getFirstName } from '../../utils';
 
-import { Post } from '../Home/Post';
+import { Post } from '../Home/Post/Post';
 import Sidebar from '../Sidebar';
 
 export const ProfileFeed = ({ profile }) => {

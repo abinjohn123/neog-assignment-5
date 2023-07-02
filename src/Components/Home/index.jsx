@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 
 import usePosts from '../../hooks/usePosts';
 import useUser from '../../hooks/useUser';
-import { Post } from './Post';
+import { Post } from './Post/Post';
 import Sidebar from '../Sidebar';
-import { NewPost } from './NewPost';
+import { NewPost } from './Post/NewPost';
 
 import './feed.scss';
 

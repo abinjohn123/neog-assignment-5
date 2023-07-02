@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { KebabIcon } from '../../icons/svg';
+import { KebabIcon } from '../../../icons/svg';
 
 export const PostActions = () => {
   const [isActionsOpen, setIsActionsOpen] = useState(false);

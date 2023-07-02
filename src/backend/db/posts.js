@@ -85,4 +85,30 @@ export const posts = [
     createdAt: '2023-07-01T08:28:42.815Z',
     updatedAt: formatDate(),
   },
+  {
+    _id: uuid(),
+    content:
+      'Just received my custom keycap set in the mail! My keyboard is about to get a serious style upgrade. 😎💻 #keyboardenthusiast ',
+    likes: {
+      likeCount: 95,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: 'sjohnyk',
+    createdAt: '2023-07-01T08:28:42.815Z',
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    content:
+      'Looking to upgrade my current keycaps to something premium and durable. Any suggestions for keycap sets that offer both style and longevity? 🎩💪 ',
+    likes: {
+      likeCount: 125,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: 'shubhamsoni',
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
 ];

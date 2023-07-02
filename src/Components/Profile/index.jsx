@@ -13,20 +13,32 @@ import './profile.scss';
 
 const Profile = () => {
   const { userId } = useParams();
-  const { fetchSingleUser, isLoading, fetchedUser } = useUser();
+  const { fetchSingleUser, isLoading, fetchedUser, followUser, unfollowUser } =
+    useUser();
   const { loggedInUser } = useAuthContext();
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const isFollowing = fetchedUser?.followers?.some(
+    (follower) => follower.username === loggedInUser.username
+  );
 
   const openEditProfileModal = (e) => {
     e.stopPropagation();
     setIsModalOpen(true);
   };
 
+  const handleFollowClick = (e) => {
+    e.stopPropagation();
+
+    if (isFollowing) unfollowUser(userId, () => fetchSingleUser(userId));
+    else followUser(userId, () => fetchSingleUser(userId));
+  };
+
   useEffect(() => {
     fetchSingleUser(userId);
   }, [userId, loggedInUser]);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (Object.keys(fetchedUser).length === 0) return <p>Loading...</p>;
 
   return (
     <>
@@ -42,6 +54,11 @@ const Profile = () => {
           <a href={fetchedUser.link || '/'} className="web-url" target="_blank">
             <GlobeIcon />
           </a>
+          {fetchedUser.username !== loggedInUser.username && (
+            <button className="btn btn-gray" onClick={handleFollowClick}>
+              {isFollowing ? 'Unfollow' : 'Follow'}
+            </button>
+          )}
         </div>
         <p className="bio">{fetchedUser.bio || 'A catchy bio goes here'}</p>
         {fetchedUser.username === loggedInUser.username && (

@@ -1,24 +1,18 @@
-import { useEffect } from 'react';
-
 import { useAuthContext } from '../../context/AuthContext';
-import usePosts from '../../hooks/usePosts';
 import { getFirstName } from '../../utils';
 
 import { Post } from '../Home/Post/Post';
 import Sidebar from '../Sidebar';
+import { useAppContext } from '../../context/AppContext';
 
-export const ProfileFeed = ({ profile }) => {
-  const { username = '' } = useAuthContext();
-  const { allPosts, fetchPosts } = usePosts();
-
-  useEffect(() => {
-    fetchPosts();
-  }, []);
+export const ProfileFeed = ({ profile = {} }) => {
+  const { loggedInUser = '' } = useAuthContext();
+  const { allPosts } = useAppContext();
 
   return (
     <div className="profile-feed">
       <h3 className="profile-h3">
-        {profile.username === username
+        {profile.username === loggedInUser.username
           ? 'Your posts'
           : `${getFirstName(profile.firstName)}'s posts`}
       </h3>

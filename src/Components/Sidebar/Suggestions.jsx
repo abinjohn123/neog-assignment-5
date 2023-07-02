@@ -4,9 +4,20 @@ import useUser from '../../hooks/useUser';
 import { getFullName } from '../../utils';
 import { useAuthContext } from '../../context/AuthContext';
 
-const UserCard = ({ user }) => {
-  const { avatar, firstName, lastName, username, _id } = user;
+export const UserCard = ({ user }) => {
+  const { avatar, firstName, lastName, username, _id, followers } = user;
+  const { followUser } = useUser();
+  const { isLoggedIn } = useAuthContext();
   const navigate = useNavigate();
+
+  const handleFollowClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (!isLoggedIn) return navigate('/login');
+    followUser(_id);
+  };
+
   return (
     <div className="user-card" onClick={() => navigate(`/user/${_id}`)}>
       <div className="avatar">
@@ -16,27 +27,34 @@ const UserCard = ({ user }) => {
         <p className="name">{getFullName(firstName, lastName)}</p>
         <span className="username">@{username}</span>
       </div>
-      <button className="btn btn-cta">Follow</button>
+      <button className="btn btn-cta" onClick={handleFollowClick}>
+        Follow
+      </button>
     </div>
   );
 };
 
 const Suggestions = () => {
-  const { isLoading, allUsers } = useUser();
-  const {
-    loggedInUser: { username = '' },
-  } = useAuthContext();
+  const { allUsers } = useUser();
+  const { loggedInUser } = useAuthContext();
 
-  if (isLoading || !Boolean(allUsers.length)) return <p>Loading...</p>;
+  const suggestedUsers = allUsers.filter(
+    (user) =>
+      user.username !== loggedInUser.username &&
+      !user.followers.some(
+        (follower) => follower.username === loggedInUser.username
+      )
+  );
+
+  if (!Boolean(suggestedUsers.length)) return null;
+
   return (
     <div className="suggestions-card">
       <h3>Suggested for you</h3>
       <div className="suggestion-list">
-        {allUsers
-          .filter((user) => user.username !== username)
-          .map((user) => (
-            <UserCard user={user} key={user._id} />
-          ))}
+        {suggestedUsers.map((user) => {
+          return <UserCard user={user} key={user._id} />;
+        })}
       </div>
     </div>
   );

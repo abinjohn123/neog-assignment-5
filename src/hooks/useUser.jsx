@@ -80,6 +80,36 @@ const useUser = () => {
       .catch((err) => console.log(err));
   };
 
+  const followUser = (userId, successCallback) => {
+    fetch(`/api/users/follow/${userId}`, {
+      method: 'POST',
+      headers: {
+        authorization: token,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        fetchAllUsers();
+        successCallback();
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const unfollowUser = (userId, successCallback) => {
+    fetch(`/api/users/unfollow/${userId}`, {
+      method: 'POST',
+      headers: {
+        authorization: token,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        fetchAllUsers();
+        successCallback();
+      })
+      .catch((err) => console.log(err));
+  };
+
   useEffect(fetchAllUsers, []);
 
   return {
@@ -92,6 +122,8 @@ const useUser = () => {
     getBookMarks,
     addToBookMarks,
     removeFromBookMarks,
+    followUser,
+    unfollowUser,
   };
 };
 

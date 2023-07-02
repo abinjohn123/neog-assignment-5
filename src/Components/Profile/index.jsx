@@ -17,6 +17,11 @@ const Profile = () => {
   const { loggedInUser } = useAuthContext();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const openEditProfileModal = (e) => {
+    e.stopPropagation();
+    setIsModalOpen(true);
+  };
+
   useEffect(() => {
     fetchSingleUser(userId);
   }, [userId, loggedInUser]);
@@ -42,7 +47,7 @@ const Profile = () => {
         {fetchedUser.username === loggedInUser.username && (
           <button
             className="btn edit-profile-btn"
-            onClick={() => setIsModalOpen(true)}
+            onClick={openEditProfileModal}
           >
             Edit profile
           </button>

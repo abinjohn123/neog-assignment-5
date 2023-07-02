@@ -84,6 +84,14 @@ $border-gray-1: 1px solid rgba(220, 220, 221, 0.3);
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 999;
+
+  .modal-cross-icon {
+    @extend .cur-p;
+    position: absolute;
+    right: 4px;
+    top: 2px;
+    transform: translate(-50%, 50%);
+  }
 }
 
 .overlay {

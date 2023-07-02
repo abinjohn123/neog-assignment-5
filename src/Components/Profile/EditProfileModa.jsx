@@ -1,8 +1,9 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 
 import useUser from '../../hooks/useUser';
 import { CrossIcon, LeftChevronIcon, RightChevronIcon } from '../../icons/svg';
 import { noop } from '../../utils';
+import Modal from '../Shared/Modal';
 
 const MIN_AVATAR_ID = 1;
 const MAX_AVATAR_ID = 7;
@@ -48,20 +49,11 @@ export const EditProfileModal = ({ profile, setIsModalOpen = noop }) => {
     setIsModalOpen(false);
   };
 
-  useEffect(() => {
-    document.querySelector('body').classList.add('overlay-enabled');
-
-    return () =>
-      document.querySelector('body').classList.remove('overlay-enabled');
-  }, []);
   return (
-    <>
-      <div className="modal edit-profile-modal">
+    <Modal setIsModalOpen={setIsModalOpen}>
+      <div className=" edit-profile-modal">
         <div className="header">
           <h2 className="modal-title">Edit Profile</h2>
-          <div className="cur-p" onClick={() => setIsModalOpen(false)}>
-            <CrossIcon />
-          </div>
         </div>
         <form className="profile-form" onSubmit={handleSubmit} ref={formRef}>
           <AvatarPicker avatarId={avatarId} setAvatarId={setAvatarId} />
@@ -95,7 +87,6 @@ export const EditProfileModal = ({ profile, setIsModalOpen = noop }) => {
           </div>
         </form>
       </div>
-      <div className="overlay" />
-    </>
+    </Modal>
   );
 };

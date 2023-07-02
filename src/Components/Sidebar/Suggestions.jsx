@@ -7,7 +7,7 @@ import { useAuthContext } from '../../context/AuthContext';
 export const UserCard = ({ user }) => {
   const { avatar, firstName, lastName, username, _id, followers } = user;
   const { followUser } = useUser();
-  const { isLoggedIn } = useAuthContext();
+  const { isLoggedIn, loggedInUser } = useAuthContext();
   const navigate = useNavigate();
 
   const handleFollowClick = (e) => {
@@ -24,12 +24,17 @@ export const UserCard = ({ user }) => {
         <img src={avatar ?? '/avatars/1.png'} alt={username} />
       </div>
       <div className="user-details">
-        <p className="name">{getFullName(firstName, lastName)}</p>
+        <p className="name">
+          {getFullName(firstName, lastName)}{' '}
+          {loggedInUser.username === username && '(You)'}
+        </p>
         <span className="username">@{username}</span>
       </div>
-      <button className="btn btn-cta" onClick={handleFollowClick}>
-        Follow
-      </button>
+      {loggedInUser.username !== username && (
+        <button className="btn btn-cta" onClick={handleFollowClick}>
+          Follow
+        </button>
+      )}
     </div>
   );
 };

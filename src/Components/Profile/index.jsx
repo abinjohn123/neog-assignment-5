@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
 import useUser from '../../hooks/useUser';
@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { getFullName } from '../../utils';
 import { ProfileFeed } from './Feed';
 import { EditProfileModal } from './EditProfileModa';
+import UserListModal from '../Home/Post/UserListModal';
 import { GlobeIcon } from '../../icons/svg';
 import './profile.scss';
 
@@ -17,6 +18,8 @@ const Profile = () => {
     useUser();
   const { loggedInUser } = useAuthContext();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isUserListModalOpen, setIsUserListModalOpen] = useState(false);
+  const userList = useRef({ list: [], type: 'Followers' });
 
   const isFollowing = fetchedUser?.followers?.some(
     (follower) => follower.username === loggedInUser.username
@@ -25,6 +28,12 @@ const Profile = () => {
   const openEditProfileModal = (e) => {
     e.stopPropagation();
     setIsModalOpen(true);
+  };
+
+  const openUserListModal = (list, type) => {
+    userList.current.list = list;
+    userList.current.type = type;
+    setIsUserListModalOpen(true);
   };
 
   const handleFollowClick = (e) => {
@@ -61,6 +70,25 @@ const Profile = () => {
           )}
         </div>
         <p className="bio">{fetchedUser.bio || 'A catchy bio goes here'}</p>
+        <div className="follow-container">
+          <p
+            className="item"
+            onClick={() =>
+              openUserListModal(fetchedUser.followers, 'Followers')
+            }
+          >
+            Followers
+          </p>
+          <span>|</span>
+          <p
+            className="item"
+            onClick={() =>
+              openUserListModal(fetchedUser.following, 'Following')
+            }
+          >
+            Following
+          </p>
+        </div>
         {fetchedUser.username === loggedInUser.username && (
           <button
             className="btn edit-profile-btn"
@@ -75,6 +103,12 @@ const Profile = () => {
         <EditProfileModal
           profile={fetchedUser}
           setIsModalOpen={setIsModalOpen}
+        />
+      )}
+      {isUserListModalOpen && (
+        <UserListModal
+          setIsModalOpen={setIsUserListModalOpen}
+          userList={userList.current}
         />
       )}
     </>

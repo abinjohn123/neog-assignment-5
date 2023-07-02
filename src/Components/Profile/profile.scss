@@ -40,6 +40,20 @@
     right: 0;
     transform: translate(-12px, 12px);
   }
+
+  .follow-container {
+    margin: 8px 0px;
+    @extend .d-flex;
+    gap: 8px;
+
+    .item {
+      @extend .cur-p;
+      color: $primary-1;
+      &:hover {
+        color: $primary-1--dark;
+      }
+    }
+  }
 }
 
 .profile-feed {

@@ -82,7 +82,7 @@ export const Post = ({ post, author }) => {
             </div>
             <p className="creation">{dateFormat(createdAt)}</p>
           </div>
-          {loggedInUser.username === username && <PostActions />}
+          {loggedInUser.username === username && <PostActions postId={_id} />}
         </div>
       </div>
       <div className="post-content">

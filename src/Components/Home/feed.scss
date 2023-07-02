@@ -118,32 +118,37 @@
 .new-post-card {
   @extend .card;
   margin-bottom: 24px;
+}
 
-  .new-post-input {
-    height: 64px;
-    width: 100%;
-    resize: none;
-    margin: 16px 0;
-    border: none;
-    outline: none;
-    border-radius: 4px;
+.new-post-input,
+.edit-post-input {
+  height: 64px;
+  width: 100%;
+  resize: none;
+  margin: 16px 0;
+  border: none;
+  outline: none;
+  border-radius: 4px;
 
-    background-color: $light-1;
-    color: $white-1;
+  background-color: $light-1;
+  color: $white-1;
 
-    &:focus {
-      outline: 1px solid $light-2;
-    }
+  &:focus {
+    outline: 1px solid $light-2;
   }
+}
 
-  .align-right {
-    text-align: end;
-  }
+.edit-post-input {
+  height: 128px;
+  word-wrap: normal;
+}
+
+.align-right {
+  text-align: end;
 }
 
 .post-actions {
   margin-left: auto;
-  position: relative;
 
   .actions-container {
     position: absolute;

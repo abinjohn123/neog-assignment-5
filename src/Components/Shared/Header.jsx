@@ -48,7 +48,7 @@ const Header = () => {
             <ProfileIcon user={loggedInUser} />
           </Link>
         )}
-        <button className="btn" onClick={handleLoginClick}>
+        <button className="btn btn-gray" onClick={handleLoginClick}>
           {isLoggedIn ? 'Log out' : 'Log in'}
         </button>
       </div>

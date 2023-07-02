@@ -4,6 +4,7 @@ import Mockman from 'mockman-js';
 import Home from './Components/Home';
 import Header from './Components/Shared/Header';
 import Profile from './Components/Profile';
+import BookMarks from './Components/Home/Bookmarks';
 import RequiresAuth from './Components/Auth/RequiresAuth';
 import Authenticate from './Components/Auth';
 
@@ -16,6 +17,14 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Authenticate />} />
         <Route path="/user/:userId/" element={<Profile />} />
+        <Route
+          path="/bookmarks"
+          element={
+            <RequiresAuth>
+              <BookMarks />
+            </RequiresAuth>
+          }
+        />
         <Route path="/mockman" element={<Mockman colorScheme="dark" />} />
       </Routes>
     </>

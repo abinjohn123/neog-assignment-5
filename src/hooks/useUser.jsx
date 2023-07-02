@@ -53,7 +53,10 @@ const useUser = () => {
       },
     })
       .then((res) => res.json())
-      .then((data) => setBookmarks(data.bookmarks))
+      .then((data) => {
+        console.log(data);
+        setBookmarks(data.bookmarks);
+      })
       .catch((err) => console.log(err));
   };
   const addToBookMarks = (postId) => {

@@ -71,11 +71,9 @@ const Home = () => {
             </button>
           </div>
         </div>
-        {sortedPosts.map((post) => {
-          const postAuthor =
-            allUsers.find((user) => user.username === post.username) ?? {};
-          return <Post post={post} key={post._id} author={postAuthor} />;
-        })}
+        {sortedPosts.map((post) => (
+          <Post post={post} key={post._id} />
+        ))}
       </div>
       <Sidebar />
     </div>

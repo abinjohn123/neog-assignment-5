@@ -5,7 +5,8 @@
   @extend .d-flex;
   justify-content: flex-start;
 
-  .logo {
+  .logo,
+  .link {
     text-decoration: none;
     &:visited,
     &:active {

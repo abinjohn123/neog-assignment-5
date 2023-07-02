@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate, useLocation } from 'react-router';
 
 import { HeartIcon, BookmarkIcon } from '../../../icons/svg';
 import { getFullName } from '../../../utils';
@@ -8,6 +8,7 @@ import { PostActions } from './PostActions';
 import { useAuthContext } from '../../../context/AuthContext';
 import usePosts from '../../../hooks/usePosts';
 import useUser from '../../../hooks/useUser';
+import { useAppContext } from '../../../context/AppContext';
 
 const dateFormat = (dateObj) => {
   return new Intl.DateTimeFormat('en-Us', {
@@ -18,22 +19,25 @@ const dateFormat = (dateObj) => {
   }).format(new Date(dateObj));
 };
 
-export const Post = ({ post, author }) => {
+export const Post = ({ post }) => {
+  const isBookmarksRoute = useLocation().pathname.includes('bookmark');
   const {
     _id,
     content,
     createdAt,
-    likes: { likeCount, likedBy, dislikedBy },
+    likes: { likeCount = 0, likedBy = [] } = {},
   } = post;
-  const { firstName, lastName, username, avatar } = author;
-  const { isLoggedIn, loggedInUser, bookmarks } = useAuthContext();
   const navigate = useNavigate();
-  const { likePost, unlikePost } = usePosts();
-
-  const { addToBookMarks, removeFromBookMarks } = useUser();
-
   const likeRef = useRef(null);
   const bookMarkRef = useRef(null);
+  const { allUsers } = useAppContext();
+  const { isLoggedIn, loggedInUser, bookmarks } = useAuthContext();
+  const { addToBookMarks, removeFromBookMarks } = useUser();
+  const { likePost, unlikePost } = usePosts();
+
+  const postAuthor =
+    allUsers.find((user) => user.username === post.username) ?? {};
+  const { firstName, lastName, username, avatar } = postAuthor;
 
   const isPostLiked = likedBy.some(
     (user) => user.username === loggedInUser.username
@@ -60,12 +64,14 @@ export const Post = ({ post, author }) => {
   };
 
   useEffect(() => {
-    likeRef.current.classList[isLoggedIn && isPostLiked ? 'add' : 'remove'](
-      'highlight'
-    );
     bookMarkRef.current.classList[
       isLoggedIn && isPostBookmarked ? 'add' : 'remove'
     ]('highlight');
+
+    if (isBookmarksRoute) return;
+    likeRef.current.classList[isLoggedIn && isPostLiked ? 'add' : 'remove'](
+      'highlight'
+    );
   }, [isLoggedIn]);
 
   return (
@@ -89,10 +95,12 @@ export const Post = ({ post, author }) => {
         <p>{content}</p>
       </div>
       <div className="post-interactions">
-        <div className="interaction" onClick={handlePostLike} ref={likeRef}>
-          <HeartIcon />
-          <p>{likeCount ? likeCount : ''}</p>
-        </div>
+        {!isBookmarksRoute && (
+          <div className="interaction" onClick={handlePostLike} ref={likeRef}>
+            <HeartIcon />
+            <p>{likeCount ? likeCount : ''}</p>
+          </div>
+        )}
         <div
           className="interaction"
           ref={bookMarkRef}

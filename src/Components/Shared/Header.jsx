@@ -40,9 +40,14 @@ const Header = () => {
 
       <div className="header-actions">
         {loggedInUser?._id && (
-          <Link to={`/user/${loggedInUser._id}`}>
-            <ProfileIcon user={loggedInUser} />
-          </Link>
+          <>
+            <Link to={`/bookmarks`} className="link">
+              Bookmarks
+            </Link>
+            <Link to={`/user/${loggedInUser._id}`}>
+              <ProfileIcon user={loggedInUser} />
+            </Link>
+          </>
         )}
         <button className="btn btn-gray" onClick={handleLoginClick}>
           {isLoggedIn ? 'Log out' : 'Log in'}

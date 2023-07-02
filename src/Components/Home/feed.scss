@@ -104,6 +104,13 @@
       gap: 4px;
       font-size: 1.4rem;
       color: $light-2;
+
+      &.highlight {
+        .icon {
+          stroke: $primary-1;
+          fill: $primary-1;
+        }
+      }
     }
   }
 }

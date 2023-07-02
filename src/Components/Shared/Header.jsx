@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useNavigate, Link, NavLink } from 'react-router-dom';
 
 import { useAuthContext } from '../../context/AuthContext';
@@ -6,9 +5,6 @@ import useUser from '../../hooks/useUser';
 import './shared.scss';
 
 const ProfileIcon = ({ user }) => {
-  // const { user, fetchUser } = useUser();
-  // useEffect(() => fetchUser(userId), [userId]);
-
   return (
     user && (
       <div className="avatar">

@@ -34,12 +34,39 @@ const usePosts = () => {
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
   };
+
+  const likePost = (postId) => {
+    fetch(`/api/posts/like/${postId}`, {
+      method: 'POST',
+      headers: {
+        authorization: token,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => fetchPosts())
+      .catch((err) => console.log(err));
+  };
+
+  const unlikePost = (postId) => {
+    fetch(`/api/posts/dislike/${postId}`, {
+      method: 'POST',
+      headers: {
+        authorization: token,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => fetchPosts())
+      .catch((err) => console.log(err));
+  };
+
   return {
     allPosts,
     setAllPosts,
     isLoading,
     fetchPosts,
     createNewPost,
+    likePost,
+    unlikePost,
   };
 };
 

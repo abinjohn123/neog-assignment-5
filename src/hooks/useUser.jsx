@@ -6,7 +6,7 @@ import { useAppContext } from '../context/AppContext';
 const useUser = () => {
   const [isLoading, setIsLoading] = useState([]);
   const [fetchedUser, setFetchedUser] = useState({});
-  const { token, setLoggedInUser } = useAuthContext();
+  const { token, setLoggedInUser, setBookmarks } = useAuthContext();
   const { allUsers, setAllUsers } = useAppContext();
 
   const fetchAllUsers = () => {
@@ -46,6 +46,40 @@ const useUser = () => {
       .catch((err) => console.log(err));
   };
 
+  const getBookMarks = () => {
+    fetch('/api/users/bookmark/', {
+      headers: {
+        authorization: token,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setBookmarks(data.bookmarks))
+      .catch((err) => console.log(err));
+  };
+  const addToBookMarks = (postId) => {
+    fetch(`/api/users/bookmark/${postId}`, {
+      method: 'POST',
+      headers: {
+        authorization: token,
+      },
+    })
+      .then((res) => res.json())
+      .then(getBookMarks)
+      .catch((err) => console.log(err));
+  };
+
+  const removeFromBookMarks = (postId) => {
+    fetch(`/api/users/remove-bookmark/${postId}`, {
+      method: 'POST',
+      headers: {
+        authorization: token,
+      },
+    })
+      .then((res) => res.json())
+      .then(getBookMarks)
+      .catch((err) => console.log(err));
+  };
+
   useEffect(fetchAllUsers, []);
 
   return {
@@ -55,6 +89,9 @@ const useUser = () => {
     fetchAllUsers,
     fetchSingleUser,
     editUser,
+    getBookMarks,
+    addToBookMarks,
+    removeFromBookMarks,
   };
 };
 

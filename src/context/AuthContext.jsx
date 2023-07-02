@@ -9,12 +9,16 @@ const AuthProvider = ({ children }) => {
   );
   const [token, setToken] = useState(localStorage.getItem('token') || null);
   const [loggedInUser, setLoggedInUser] = useState({});
+  const [bookmarks, setBookmarks] = useState([]);
+
   const contextValue = {
     isLoggedIn,
     token,
     setToken,
     loggedInUser,
     setLoggedInUser,
+    bookmarks,
+    setBookmarks,
   };
 
   useEffect(() => {

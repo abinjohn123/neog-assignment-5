@@ -9,6 +9,7 @@ const SpinnerButton = ({
   isLoading = false,
   disabled = false,
   onClick = noop,
+  ...restProps
 }) => {
   const contentRef = useRef(null);
 
@@ -25,6 +26,7 @@ const SpinnerButton = ({
       type={type}
       disabled={disabled || isLoading}
       onClick={onClick}
+      {...restProps}
     >
       {isLoading && (
         <div className="spinner-container">

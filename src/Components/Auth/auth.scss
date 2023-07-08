@@ -72,3 +72,21 @@
     }
   }
 }
+
+.password-field {
+  position: relative;
+}
+
+.password-icon {
+  @extend .cur-p;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translate(-4px, -3px);
+
+  &.highlight {
+    .icon {
+      stroke: $primary-1;
+    }
+  }
+}

@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import { useAuth } from '../../hooks/useAuth';
+import { PasswordEyeIcon } from '../../icons/svg';
 import './auth.scss';
 
 const Authenticate = ({ isNewUser = false }) => {
@@ -49,21 +50,40 @@ const Authenticate = ({ isNewUser = false }) => {
     setTimeout(() => logIn(payload, successCallback), 200);
   };
 
+  const handleShowPasswordClick = (e) => {
+    const passwordIcon = e.currentTarget;
+    const passwordEl = passwordIcon.previousSibling;
+
+    if (passwordEl.getAttribute('type') === 'password') {
+      passwordEl.setAttribute('type', 'text');
+      passwordIcon.classList.add('highlight');
+    } else {
+      passwordEl.setAttribute('type', 'password');
+      passwordIcon.classList.remove('highlight');
+    }
+  };
+
   return (
     <form className="login-form" onSubmit={handleSubmit}>
       <label>
         <span>Username:</span>
         <input type="text" required ref={userNameRef} />
       </label>
-      <label>
+      <label className="password-field">
         <span>Password:</span>
         <input type="password" required ref={passwordRef} />
+        <div className="password-icon" onClick={handleShowPasswordClick}>
+          <PasswordEyeIcon />
+        </div>
       </label>
       {isSignup && (
         <>
-          <label>
+          <label className="password-field">
             <span>Confirm password:</span>
             <input type="password" required />
+            <div className="password-icon" onClick={handleShowPasswordClick}>
+              <PasswordEyeIcon />
+            </div>
           </label>
           <label>
             <span>First name:</span>

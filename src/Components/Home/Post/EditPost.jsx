@@ -1,10 +1,12 @@
 import { useEffect, useRef } from 'react';
 import Modal from '../../Shared/Modal';
 
+import SpinnerButton from '../../Shared/SpinnerButton';
 import usePosts from '../../../hooks/usePosts';
 
 const EditPost = ({ setIsModalOpen, postId }) => {
-  const { singlePost, fetchSinglePost, editPost, isLoading } = usePosts();
+  const { singlePost, fetchSinglePost, editPost, isLoading, isSubmitting } =
+    usePosts();
   const formRef = useRef(null);
   const textAreaRef = useRef(null);
 
@@ -34,9 +36,14 @@ const EditPost = ({ setIsModalOpen, postId }) => {
           defaultValue={singlePost.content}
         />
         <div className="align-right">
-          <button className="btn btn-primary" type="submit">
-            {isLoading ? '   .   .   .   .   .   ' : 'Post'}
-          </button>
+          <SpinnerButton
+            type="submit"
+            className="btn-primary"
+            disabled={isLoading}
+            isLoading={isSubmitting}
+          >
+            Save
+          </SpinnerButton>
         </div>
       </form>
     </Modal>

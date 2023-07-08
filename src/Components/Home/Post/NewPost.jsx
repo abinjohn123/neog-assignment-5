@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useAuthContext } from '../../../context/AuthContext';
+import SpinnerButton from '../../Shared/SpinnerButton';
 import usePosts from '../../../hooks/usePosts';
 
 export const NewPost = () => {
@@ -10,7 +11,7 @@ export const NewPost = () => {
 
   const { isLoggedIn } = useAuthContext();
   const navigate = useNavigate();
-  const { createNewPost, isLoading } = usePosts();
+  const { createNewPost, isSubmitting } = usePosts();
 
   const newPostHandler = (e) => {
     e.preventDefault();
@@ -37,9 +38,13 @@ export const NewPost = () => {
           ref={textAreaRef}
         />
         <div className="align-right">
-          <button className="btn btn-primary" type="submit">
-            {isLoading ? '   .   .   .   .   .   ' : 'Post'}
-          </button>
+          <SpinnerButton
+            type="submit"
+            className="btn-primary"
+            isLoading={isSubmitting}
+          >
+            Post
+          </SpinnerButton>
         </div>
       </form>
     </div>

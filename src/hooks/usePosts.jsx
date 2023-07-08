@@ -6,6 +6,7 @@ const usePosts = () => {
   const { allPosts, setAllPosts } = useAppContext();
   const { token } = useAuthContext();
   const [isLoading, setIsLoading] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [singlePost, setSinglePost] = useState({});
 
   const fetchPosts = () => {
@@ -29,7 +30,7 @@ const usePosts = () => {
   };
 
   const createNewPost = (postData, SuccessCallback) => {
-    setIsLoading(true);
+    setIsSubmitting(true);
     fetch(`/api/posts`, {
       method: 'POST',
       headers: {
@@ -43,7 +44,7 @@ const usePosts = () => {
         SuccessCallback();
       })
       .catch((err) => console.log(err))
-      .finally(() => setIsLoading(false));
+      .finally(() => setIsSubmitting(false));
   };
 
   const likePost = (postId) => {
@@ -71,7 +72,7 @@ const usePosts = () => {
   };
 
   const editPost = (postId, postData, SuccessCallback) => {
-    setIsLoading(true);
+    setIsSubmitting(true);
     fetch(`/api/posts/edit/${postId}`, {
       method: 'POST',
       headers: {
@@ -85,7 +86,7 @@ const usePosts = () => {
         SuccessCallback();
       })
       .catch((err) => console.log(err))
-      .finally(() => setIsLoading(false));
+      .finally(() => setIsSubmitting(false));
   };
 
   const deletePost = (postId, SuccessCallback) => {
@@ -110,6 +111,7 @@ const usePosts = () => {
     singlePost,
     setAllPosts,
     isLoading,
+    isSubmitting,
     fetchPosts,
     fetchSinglePost,
     createNewPost,

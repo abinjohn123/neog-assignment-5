@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAppContext } from '../context/AppContext';
 import { useAuthContext } from '../context/AuthContext';
 
@@ -90,7 +90,7 @@ const usePosts = () => {
   };
 
   const deletePost = (postId, SuccessCallback) => {
-    setIsLoading(true);
+    setIsSubmitting(true);
     fetch(`/api/posts/${postId}`, {
       method: 'DELETE',
       headers: {
@@ -103,8 +103,10 @@ const usePosts = () => {
         SuccessCallback();
       })
       .catch((err) => console.log(err))
-      .finally(() => setIsLoading(false));
+      .finally(() => setIsSubmitting(false));
   };
+
+  useEffect(fetchPosts, []);
 
   return {
     allPosts,

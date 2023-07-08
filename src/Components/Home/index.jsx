@@ -18,19 +18,10 @@ const SORT_KEYS = {
   All posts will be displayed here
 */
 const Home = () => {
-  const {
-    allPosts,
-    setAllPosts,
-    isLoading: isPostsLoading,
-    fetchPosts,
-  } = usePosts();
+  const { allPosts, isLoading: isPostsLoading } = usePosts();
   const { allUsers, isLoading: isUsersLoading } = useUser();
   const [sort, setSort] = useState(SORT_KEYS.LATEST);
   const [sortedPosts, setSortedPosts] = useState([]);
-
-  useEffect(() => {
-    fetchPosts();
-  }, []);
 
   useEffect(() => {
     if (isPostsLoading || allPosts.length === 0) return;
@@ -49,7 +40,7 @@ const Home = () => {
       );
   }, [allPosts, sort]);
 
-  if (isPostsLoading || allPosts.length === 0) return <p>Loading...</p>;
+  if (allPosts.length === 0) return <p>Loading...</p>;
   return (
     <div className="layout">
       <div className="feed">

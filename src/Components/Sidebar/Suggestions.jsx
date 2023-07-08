@@ -4,19 +4,20 @@ import useUser from '../../hooks/useUser';
 import { getFullName } from '../../utils';
 import { useAuthContext } from '../../context/AuthContext';
 import SpinnerButton from '../Shared/SpinnerButton';
+import authUtils from '../Auth/utils';
 
 export const UserCard = ({ user }) => {
   const { avatar, firstName, lastName, username, _id, followers } = user;
   const { followUser, isSubmitting } = useUser();
-  const { isLoggedIn, loggedInUser } = useAuthContext();
+  const { loggedInUser } = useAuthContext();
   const navigate = useNavigate();
+  const { loginRedirect } = authUtils();
 
   const handleFollowClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
 
-    if (!isLoggedIn) return navigate('/login');
-    followUser(_id);
+    loginRedirect(() => followUser(_id));
   };
 
   return (

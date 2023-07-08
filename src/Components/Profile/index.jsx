@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 import useUser from '../../hooks/useUser';
 import { useAuthContext } from '../../context/AuthContext';
+import authUtils from '../Auth/utils';
 
 import SpinnerButton from '../Shared/SpinnerButton';
 import { getFullName } from '../../utils';
@@ -27,6 +28,7 @@ const Profile = () => {
   const [isUserListModalOpen, setIsUserListModalOpen] = useState(false);
   const userList = useRef({ list: [], type: 'Followers' });
   const navigate = useNavigate();
+  const { loginRedirect } = authUtils();
 
   const isFollowing = fetchedUser?.followers?.some(
     (follower) => follower.username === loggedInUser.username
@@ -45,8 +47,6 @@ const Profile = () => {
 
   const handleFollowClick = (e) => {
     e.stopPropagation();
-
-    if (!isLoggedIn) return navigate('/login');
 
     if (isFollowing) unfollowUser(userId, () => fetchSingleUser(userId));
     else followUser(userId, () => fetchSingleUser(userId));
@@ -75,7 +75,7 @@ const Profile = () => {
           {fetchedUser.username !== loggedInUser.username && (
             <SpinnerButton
               className="btn-gray"
-              onClick={handleFollowClick}
+              onClick={(e) => loginRedirect(() => handleFollowClick(e))}
               isLoading={isSubmitting}
             >
               {isFollowing ? 'Unfollow' : 'Follow'}

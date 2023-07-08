@@ -6,6 +6,7 @@ import { getFullName } from '../../../utils';
 
 import { PostActions } from './PostActions';
 import { useAuthContext } from '../../../context/AuthContext';
+import authUtils from '../../Auth/utils';
 import usePosts from '../../../hooks/usePosts';
 import useUser from '../../../hooks/useUser';
 import { useAppContext } from '../../../context/AppContext';
@@ -34,6 +35,7 @@ export const Post = ({ post }) => {
   const { isLoggedIn, loggedInUser, bookmarks } = useAuthContext();
   const { addToBookMarks, removeFromBookMarks } = useUser();
   const { likePost, unlikePost } = usePosts();
+  const { loginRedirect } = authUtils();
 
   const postAuthor =
     allUsers.find((user) => user.username === post.username) ?? {};
@@ -51,7 +53,6 @@ export const Post = ({ post }) => {
   const isPostBookmarked = bookmarks.some((post) => post._id === _id);
 
   const handlePostLike = () => {
-    if (!isLoggedIn) return navigate('/login');
     likeRef.current.classList[isPostLiked ? 'remove' : 'add']('highlight');
 
     if (isPostLiked) unlikePost(_id);
@@ -59,8 +60,6 @@ export const Post = ({ post }) => {
   };
 
   const handlePostBookmark = () => {
-    if (!isLoggedIn) return navigate('/login');
-
     bookMarkRef.current.classList[isPostBookmarked ? 'remove' : 'add'](
       'highlight'
     );
@@ -107,7 +106,11 @@ export const Post = ({ post }) => {
       </div>
       <div className="post-interactions">
         {!isBookmarksRoute && (
-          <div className="interaction" onClick={handlePostLike} ref={likeRef}>
+          <div
+            className="interaction"
+            onClick={() => loginRedirect(handlePostLike)}
+            ref={likeRef}
+          >
             <HeartIcon />
             <p>{likeCount ? likeCount : ''}</p>
           </div>
@@ -115,7 +118,7 @@ export const Post = ({ post }) => {
         <div
           className="interaction"
           ref={bookMarkRef}
-          onClick={handlePostBookmark}
+          onClick={() => loginRedirect(handlePostBookmark)}
         >
           <BookmarkIcon />
         </div>

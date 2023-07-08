@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useAuthContext } from '../../../context/AuthContext';
+import authUtils from '../../Auth/utils';
 import SpinnerButton from '../../Shared/SpinnerButton';
 import usePosts from '../../../hooks/usePosts';
 import { useCustomSnackbar } from '../../Shared/CustomSnackbar';
@@ -10,6 +11,7 @@ export const NewPost = () => {
   const formRef = useRef(null);
   const textAreaRef = useRef(null);
   const { enqueueSnackbar } = useCustomSnackbar();
+  const { loginRedirect } = authUtils();
 
   const { isLoggedIn } = useAuthContext();
   const navigate = useNavigate();
@@ -28,10 +30,10 @@ export const NewPost = () => {
     for (const entry of postData) payload[entry[0]] = entry[1];
     localStorage.setItem('content', payload.content);
 
-    if (!isLoggedIn) return navigate('/login');
-
-    createNewPost(payload, () => (textAreaRef.current.value = ''));
-    localStorage.removeItem('content');
+    loginRedirect(() => {
+      createNewPost(payload, () => (textAreaRef.current.value = ''));
+      localStorage.removeItem('content');
+    });
   };
 
   return (

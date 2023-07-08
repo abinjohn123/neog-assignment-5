@@ -34,6 +34,7 @@ export const NewPost = () => {
         <textarea
           className="new-post-input"
           name="content"
+          placeholder="click clack..."
           defaultValue={localStorage.getItem('content')}
           ref={textAreaRef}
         />

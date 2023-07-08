@@ -4,9 +4,10 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import PasswordField from './PasswordField';
 import './auth.scss';
+import SpinnerButton from '../Shared/SpinnerButton';
 
 const Authenticate = ({ isNewUser = false }) => {
-  const { signUp, logIn } = useAuth();
+  const { signUp, logIn, isSubmitting } = useAuth();
   const [isSignup, setIsSignUp] = useState(isNewUser);
   const navigate = useNavigate();
   const location = useLocation();
@@ -71,13 +72,15 @@ const Authenticate = ({ isNewUser = false }) => {
         </>
       )}
       <div className="btn-row">
-        <button
+        <SpinnerButton
           type="submit"
           className="btn-submit"
+          isLoading={isSubmitting}
           style={{ gridColumn: !isSignup ? null : '1/-1' }}
         >
           {isSignup ? 'Sign up' : 'Log in'}
-        </button>
+        </SpinnerButton>
+
         {!isSignup && (
           <button
             type="button"

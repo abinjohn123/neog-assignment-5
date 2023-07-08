@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
-
 import { noop } from '../../utils';
+
+import './shared.scss';
 
 const SpinnerButton = ({
   children,

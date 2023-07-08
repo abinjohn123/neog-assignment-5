@@ -8,18 +8,21 @@ import './index.scss';
 
 import AppProvider from './context/AppContext';
 import AuthProvider from './context/AuthContext';
+import CustomSnackbarProvider from './Components/Shared/CustomSnackbar';
 
 // Call make Server
 makeServer();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AuthProvider>
-      <AppProvider>
-        <Router>
-          <App />
-        </Router>
-      </AppProvider>
-    </AuthProvider>
+    <CustomSnackbarProvider>
+      <AuthProvider>
+        <AppProvider>
+          <Router>
+            <App />
+          </Router>
+        </AppProvider>
+      </AuthProvider>
+    </CustomSnackbarProvider>
   </React.StrictMode>
 );

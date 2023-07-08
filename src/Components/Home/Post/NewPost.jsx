@@ -4,10 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../../../context/AuthContext';
 import SpinnerButton from '../../Shared/SpinnerButton';
 import usePosts from '../../../hooks/usePosts';
+import { useCustomSnackbar } from '../../Shared/CustomSnackbar';
 
 export const NewPost = () => {
   const formRef = useRef(null);
   const textAreaRef = useRef(null);
+  const { enqueueSnackbar } = useCustomSnackbar();
 
   const { isLoggedIn } = useAuthContext();
   const navigate = useNavigate();
@@ -16,6 +18,11 @@ export const NewPost = () => {
   const newPostHandler = (e) => {
     e.preventDefault();
     const payload = {};
+
+    if (textAreaRef.current.value.trim() === '') {
+      enqueueSnackbar('Type something first!', 'info');
+      return;
+    }
 
     const postData = new FormData(formRef.current);
     for (const entry of postData) payload[entry[0]] = entry[1];

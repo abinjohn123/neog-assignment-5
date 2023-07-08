@@ -53,6 +53,9 @@ const Authenticate = ({ isNewUser = false }) => {
 
   return (
     <form className="login-form" onSubmit={handleSubmit}>
+      <p className="align-center form-header">
+        {isSignup ? 'Sign up' : 'Log in'}
+      </p>
       <label>
         <span>Username:</span>
         <input type="text" required ref={userNameRef} />

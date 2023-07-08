@@ -32,6 +32,15 @@ $border-gray-1: 1px solid rgba(220, 220, 221, 0.3);
 ************
 */
 
+// Alignment
+.align-right {
+  text-align: end;
+}
+
+.align-center {
+  text-align: center;
+}
+
 .card {
   padding: 16px;
   border-radius: 8px;

@@ -1,4 +1,4 @@
-import { useNavigate, Link, NavLink } from 'react-router-dom';
+import { useNavigate, useLocation, Link, NavLink } from 'react-router-dom';
 
 import { useAuthContext } from '../../context/AuthContext';
 import useUser from '../../hooks/useUser';
@@ -16,6 +16,8 @@ const ProfileIcon = ({ user }) => {
 
 const Header = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
   const {
     isLoggedIn,
     setToken,
@@ -49,9 +51,11 @@ const Header = () => {
             </Link>
           </>
         )}
-        <button className="btn btn-gray" onClick={handleLoginClick}>
-          {isLoggedIn ? 'Log out' : 'Log in'}
-        </button>
+        {!location.pathname.includes('/login') && (
+          <button className="btn btn-gray" onClick={handleLoginClick}>
+            {isLoggedIn ? 'Log out' : 'Log in'}
+          </button>
+        )}
       </div>
     </header>
   );

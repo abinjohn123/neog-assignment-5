@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { useAuthContext } from '../context/AuthContext';
 import { useAppContext } from '../context/AppContext';
 
+import { noop } from '../utils';
+
 const useUser = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -84,7 +86,7 @@ const useUser = () => {
       .catch((err) => console.log(err));
   };
 
-  const followUser = (userId, successCallback) => {
+  const followUser = (userId, successCallback = noop) => {
     setIsSubmitting(true);
     fetch(`/api/users/follow/${userId}`, {
       method: 'POST',
@@ -101,7 +103,7 @@ const useUser = () => {
       .finally(() => setIsSubmitting(false));
   };
 
-  const unfollowUser = (userId, successCallback) => {
+  const unfollowUser = (userId, successCallback = noop) => {
     setIsSubmitting(true);
 
     fetch(`/api/users/unfollow/${userId}`, {

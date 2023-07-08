@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import useUser from '../../hooks/useUser';
 import { useAuthContext } from '../../context/AuthContext';
@@ -22,10 +22,11 @@ const Profile = () => {
     followUser,
     unfollowUser,
   } = useUser();
-  const { loggedInUser } = useAuthContext();
+  const { loggedInUser, isLoggedIn } = useAuthContext();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isUserListModalOpen, setIsUserListModalOpen] = useState(false);
   const userList = useRef({ list: [], type: 'Followers' });
+  const navigate = useNavigate();
 
   const isFollowing = fetchedUser?.followers?.some(
     (follower) => follower.username === loggedInUser.username
@@ -44,6 +45,8 @@ const Profile = () => {
 
   const handleFollowClick = (e) => {
     e.stopPropagation();
+
+    if (!isLoggedIn) return navigate('/login');
 
     if (isFollowing) unfollowUser(userId, () => fetchSingleUser(userId));
     else followUser(userId, () => fetchSingleUser(userId));

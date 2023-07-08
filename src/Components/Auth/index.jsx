@@ -80,7 +80,6 @@ const Authenticate = ({ isNewUser = false }) => {
         >
           {isSignup ? 'Sign up' : 'Log in'}
         </SpinnerButton>
-
         {!isSignup && (
           <button
             type="button"

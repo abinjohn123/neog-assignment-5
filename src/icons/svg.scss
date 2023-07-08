@@ -9,6 +9,7 @@
   transition: fill 0.2s;
 
   &:hover {
+    @extend .cur-p;
     stroke: $primary-1;
     fill: $primary-1;
   }

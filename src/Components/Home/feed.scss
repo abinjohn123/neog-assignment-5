@@ -39,7 +39,6 @@
 }
 .post-card {
   @extend .card;
-  @extend .cur-p;
   margin-bottom: 16px;
   transition: background-color 0.2s;
 

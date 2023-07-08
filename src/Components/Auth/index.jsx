@@ -5,12 +5,14 @@ import { useAuth } from '../../hooks/useAuth';
 import PasswordField from './PasswordField';
 import './auth.scss';
 import SpinnerButton from '../Shared/SpinnerButton';
+import { useCustomSnackbar } from '../Shared/CustomSnackbar';
 
 const Authenticate = ({ isNewUser = false }) => {
   const { signUp, logIn, isSubmitting } = useAuth();
   const [isSignup, setIsSignUp] = useState(isNewUser);
   const navigate = useNavigate();
   const location = useLocation();
+  const { enqueueSnackbar } = useCustomSnackbar();
 
   const userNameRef = useRef(null);
   const passwordRef = useRef(null);
@@ -34,6 +36,7 @@ const Authenticate = ({ isNewUser = false }) => {
       payload.lastName = e.target[4].value.trim();
 
       if (e.target[1].value !== e.target[2].value.trim()) {
+        enqueueSnackbar('Passwords do not match!', 'error');
         return console.log('passwords do not match');
       }
       signUp(payload, successCallback);

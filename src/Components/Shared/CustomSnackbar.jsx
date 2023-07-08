@@ -13,7 +13,11 @@ const StyledMaterialDesignContent = styled(MaterialDesignContent)(() => ({
     fontSize: '1.4rem',
   },
   '&.notistack-MuiContent-error': {
-    backgroundColor: '#970C0C',
+    backgroundColor: '#dc2626',
+    fontSize: '1.4rem',
+  },
+  '&.notistack-MuiContent-success': {
+    backgroundColor: '#047857',
     fontSize: '1.4rem',
   },
 }));

@@ -23,6 +23,7 @@
     background-color: $light-1;
     color: $light-4;
     border-radius: 4px;
+    letter-spacing: 0.2mm;
   }
 
   .btn-row {
@@ -75,6 +76,10 @@
 
 .password-field {
   position: relative;
+
+  input {
+    letter-spacing: 0.5mm;
+  }
 }
 
 .password-icon {

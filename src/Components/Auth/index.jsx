@@ -50,73 +50,65 @@ const Authenticate = ({ isNewUser = false }) => {
   };
 
   return (
-    <>
-      <div className="login-form">
-        <form onSubmit={handleSubmit}>
+    <form className="login-form" onSubmit={handleSubmit}>
+      <label>
+        <span>Username:</span>
+        <input type="text" required ref={userNameRef} />
+      </label>
+      <label>
+        <span>Password:</span>
+        <input type="password" required ref={passwordRef} />
+      </label>
+      {isSignup && (
+        <>
           <label>
-            <span>Username:</span>
-            <input type="text" required ref={userNameRef} />
+            <span>Confirm password:</span>
+            <input type="password" required />
           </label>
           <label>
-            <span>Password:</span>
-            <input type="password" required ref={passwordRef} />
+            <span>First name:</span>
+            <input type="text" required />
           </label>
-          {isSignup && (
-            <>
-              <label>
-                <span>Confirm password:</span>
-                <input type="password" required />
-              </label>
-              <label>
-                <span>First name:</span>
-                <input type="text" required />
-              </label>
-              <label>
-                <span>Last name:</span>
-                <input type="text" required />
-              </label>
-            </>
-          )}
-          <div className="btn-row">
-            <button
-              type="submit"
-              className="btn-submit"
-              style={{ gridColumn: !isSignup ? null : '1/-1' }}
-            >
-              {isSignup ? 'Sign up' : 'Log in'}
-            </button>
-            {!isSignup && (
-              <button
-                type="button"
-                className="btn-test"
-                onClick={loginWithTestCredentials}
-              >
-                Sign in with test credentials
-              </button>
-            )}
-          </div>
-          <div className="login-nudge">
-            {isSignup ? (
-              <p>
-                Already registered?{' '}
-                <span onClick={() => setIsSignUp((state) => !state)}>
-                  Log in
-                </span>{' '}
-                instead
-              </p>
-            ) : (
-              <p>
-                New user?{' '}
-                <span onClick={() => setIsSignUp((state) => !state)}>
-                  Sign up
-                </span>{' '}
-                instead
-              </p>
-            )}
-          </div>
-        </form>
+          <label>
+            <span>Last name:</span>
+            <input type="text" required />
+          </label>
+        </>
+      )}
+      <div className="btn-row">
+        <button
+          type="submit"
+          className="btn-submit"
+          style={{ gridColumn: !isSignup ? null : '1/-1' }}
+        >
+          {isSignup ? 'Sign up' : 'Log in'}
+        </button>
+        {!isSignup && (
+          <button
+            type="button"
+            className="btn-test"
+            onClick={loginWithTestCredentials}
+          >
+            Sign in with test credentials
+          </button>
+        )}
       </div>
-    </>
+      <div className="login-nudge">
+        {isSignup ? (
+          <p>
+            Already registered?{' '}
+            <span onClick={() => setIsSignUp((state) => !state)}>Log in</span>{' '}
+            instead
+          </p>
+        ) : (
+          <p>
+            New user?{' '}
+            <span onClick={() => setIsSignUp((state) => !state)}>Sign up</span>{' '}
+            instead
+          </p>
+        )}
+      </div>
+    </form>
   );
 };
 

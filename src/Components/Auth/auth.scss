@@ -3,15 +3,12 @@
 .login-form {
   width: 640px;
   margin: 0 auto;
-
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    border: $border-gray-1;
-    border-radius: 8px;
-    padding: 24px;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border: $border-gray-1;
+  border-radius: 8px;
+  padding: 24px;
 
   span {
     display: inline-block;

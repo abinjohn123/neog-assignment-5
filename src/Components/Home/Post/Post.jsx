@@ -37,7 +37,13 @@ export const Post = ({ post }) => {
 
   const postAuthor =
     allUsers.find((user) => user.username === post.username) ?? {};
-  const { firstName, lastName, username, avatar } = postAuthor;
+  const {
+    firstName,
+    lastName,
+    username,
+    avatar,
+    _id: postAuthorId,
+  } = postAuthor;
 
   const isPostLiked = likedBy.some(
     (user) => user.username === loggedInUser.username
@@ -83,7 +89,12 @@ export const Post = ({ post }) => {
           </div>
           <div className="post-details">
             <div className="author-details">
-              <p className="name">{getFullName(firstName, lastName)}</p>
+              <p
+                className="name cur-p"
+                onClick={() => navigate(`/user/${postAuthorId}`)}
+              >
+                {getFullName(firstName, lastName)}
+              </p>
               <span className="username">@{username}</span>
             </div>
             <p className="creation">{dateFormat(createdAt)}</p>

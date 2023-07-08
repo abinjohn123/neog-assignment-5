@@ -22,7 +22,7 @@ const useAuth = () => {
         if (data.errors) console.log(data);
       })
       .catch((err) => console.log(err))
-      .finally(() => setIsSubmitting(false));
+      .finaly(() => setIsSubmitting(false));
   };
 
   const signUp = (payload, successCb = noop) => {
@@ -41,7 +41,7 @@ const useAuth = () => {
         if (data.errors) console.log(data);
       })
       .catch((err) => console.log(err))
-      .finally(() => setIsSubmitting(false));
+      .finaly(() => setIsSubmitting(false));
   };
 
   return {

@@ -4,7 +4,8 @@ import { useAuthContext } from '../context/AuthContext';
 import { useAppContext } from '../context/AppContext';
 
 const useUser = () => {
-  const [isLoading, setIsLoading] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [fetchedUser, setFetchedUser] = useState({});
   const { token, setLoggedInUser, setBookmarks } = useAuthContext();
   const { allUsers, setAllUsers } = useAppContext();
@@ -84,6 +85,7 @@ const useUser = () => {
   };
 
   const followUser = (userId, successCallback) => {
+    setIsSubmitting(true);
     fetch(`/api/users/follow/${userId}`, {
       method: 'POST',
       headers: {
@@ -95,10 +97,13 @@ const useUser = () => {
         fetchAllUsers();
         successCallback();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setIsSubmitting(false));
   };
 
   const unfollowUser = (userId, successCallback) => {
+    setIsSubmitting(true);
+
     fetch(`/api/users/unfollow/${userId}`, {
       method: 'POST',
       headers: {
@@ -110,7 +115,8 @@ const useUser = () => {
         fetchAllUsers();
         successCallback();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setIsSubmitting(false));
   };
 
   useEffect(fetchAllUsers, []);
@@ -119,6 +125,7 @@ const useUser = () => {
     allUsers,
     fetchedUser,
     isLoading,
+    isSubmitting,
     fetchAllUsers,
     fetchSingleUser,
     editUser,

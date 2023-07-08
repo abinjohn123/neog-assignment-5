@@ -3,10 +3,11 @@ import { useNavigate, useParams } from 'react-router';
 import useUser from '../../hooks/useUser';
 import { getFullName } from '../../utils';
 import { useAuthContext } from '../../context/AuthContext';
+import SpinnerButton from '../Shared/SpinnerButton';
 
 export const UserCard = ({ user }) => {
   const { avatar, firstName, lastName, username, _id, followers } = user;
-  const { followUser } = useUser();
+  const { followUser, isSubmitting } = useUser();
   const { isLoggedIn, loggedInUser } = useAuthContext();
   const navigate = useNavigate();
 
@@ -31,9 +32,13 @@ export const UserCard = ({ user }) => {
         <span className="username">@{username}</span>
       </div>
       {loggedInUser.username !== username && (
-        <button className="btn btn-cta" onClick={handleFollowClick}>
+        <SpinnerButton
+          className="btn-cta"
+          onClick={handleFollowClick}
+          isLoading={isSubmitting}
+        >
           Follow
-        </button>
+        </SpinnerButton>
       )}
     </div>
   );

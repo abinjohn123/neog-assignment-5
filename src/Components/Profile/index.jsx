@@ -1,10 +1,10 @@
-import { useState, useRef } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useEffect, useState, useRef } from 'react';
+import { useParams } from 'react-router-dom';
 
 import useUser from '../../hooks/useUser';
 import { useAuthContext } from '../../context/AuthContext';
-import { useEffect } from 'react';
 
+import SpinnerButton from '../Shared/SpinnerButton';
 import { getFullName } from '../../utils';
 import { ProfileFeed } from './Feed';
 import { EditProfileModal } from './EditProfileModa';
@@ -14,8 +14,14 @@ import './profile.scss';
 
 const Profile = () => {
   const { userId } = useParams();
-  const { fetchSingleUser, isLoading, fetchedUser, followUser, unfollowUser } =
-    useUser();
+  const {
+    fetchSingleUser,
+    isLoading,
+    isSubmitting,
+    fetchedUser,
+    followUser,
+    unfollowUser,
+  } = useUser();
   const { loggedInUser } = useAuthContext();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isUserListModalOpen, setIsUserListModalOpen] = useState(false);
@@ -64,9 +70,13 @@ const Profile = () => {
             <GlobeIcon />
           </a>
           {fetchedUser.username !== loggedInUser.username && (
-            <button className="btn btn-gray" onClick={handleFollowClick}>
+            <SpinnerButton
+              className="btn-gray"
+              onClick={handleFollowClick}
+              isLoading={isSubmitting}
+            >
               {isFollowing ? 'Unfollow' : 'Follow'}
-            </button>
+            </SpinnerButton>
           )}
         </div>
         <p className="bio">{fetchedUser.bio || 'A catchy bio goes here'}</p>

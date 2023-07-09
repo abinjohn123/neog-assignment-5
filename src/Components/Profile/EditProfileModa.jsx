@@ -4,6 +4,7 @@ import useUser from '../../hooks/useUser';
 import { CrossIcon, LeftChevronIcon, RightChevronIcon } from '../../icons/svg';
 import { noop } from '../../utils';
 import Modal from '../Shared/Modal';
+import SpinnerButton from '../Shared/SpinnerButton';
 
 const MIN_AVATAR_ID = 1;
 const MAX_AVATAR_ID = 7;
@@ -35,7 +36,7 @@ export const EditProfileModal = ({ profile, setIsModalOpen = noop }) => {
     Number.parseInt(profile.avatar.split('/').pop())
   );
   const formRef = useRef(null);
-  const { editUser } = useUser();
+  const { editUser, isSubmitting } = useUser();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -45,8 +46,7 @@ export const EditProfileModal = ({ profile, setIsModalOpen = noop }) => {
     for (const entry of formData.entries()) payload[entry[0]] = entry[1];
     payload.avatar = `/avatars/${avatarId}.png`;
 
-    editUser(payload);
-    setIsModalOpen(false);
+    editUser(payload, () => setIsModalOpen(false));
   };
 
   return (
@@ -81,9 +81,16 @@ export const EditProfileModal = ({ profile, setIsModalOpen = noop }) => {
             >
               Discard
             </button>
-            <button type="submit" className="btn modal-btn --submit">
+            <SpinnerButton
+              type="submit"
+              className="modal-btn --submit"
+              isLoading={isSubmitting}
+            >
               Save
-            </button>
+            </SpinnerButton>
+            {/* <button type="submit" className="btn modal-btn --submit">
+              Save
+            </button> */}
           </div>
         </form>
       </div>

@@ -33,7 +33,8 @@ const useUser = () => {
       .finally(() => setIsLoading(false));
   };
 
-  const editUser = (userData) => {
+  const editUser = (userData, successCallback = noop) => {
+    setIsSubmitting(true);
     fetch(`/api/users/edit`, {
       method: 'POST',
       headers: {
@@ -46,8 +47,10 @@ const useUser = () => {
         // fetchSingleUser(data.user._id);
         setLoggedInUser({ ...data.user });
         fetchAllUsers();
+        successCallback();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setStateAfterDelay(() => setIsSubmitting(false)));
   };
 
   const getBookMarks = () => {

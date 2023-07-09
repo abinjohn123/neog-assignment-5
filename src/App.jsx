@@ -5,6 +5,7 @@ import Home from './Components/Home';
 import Header from './Components/Shared/Header';
 import Profile from './Components/Profile';
 import BookMarks from './Components/Home/Bookmarks';
+import Explore from './Components/Home/Explore';
 import RequiresAuth from './Components/Auth/RequiresAuth';
 import Authenticate from './Components/Auth';
 
@@ -25,6 +26,7 @@ function App() {
             </RequiresAuth>
           }
         />
+        <Route path="/explore" element={<Explore />} />
         <Route path="/mockman" element={<Mockman colorScheme="dark" />} />
       </Routes>
     </>

@@ -1,6 +1,7 @@
 import { useNavigate, useLocation, Link, NavLink } from 'react-router-dom';
 
 import { useAuthContext } from '../../context/AuthContext';
+import { ExploreIcon } from '../../icons/svg';
 import useUser from '../../hooks/useUser';
 import './shared.scss';
 
@@ -52,6 +53,9 @@ const Header = () => {
             </Link>
           </>
         )}
+        <Link to="/explore/" className="d-flex link">
+          <ExploreIcon />
+        </Link>
         {!location.pathname.includes('/login') && (
           <button className="btn btn-gray" onClick={handleLoginClick}>
             {isLoggedIn ? 'Log out' : 'Log in'}

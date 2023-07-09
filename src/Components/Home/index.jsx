@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 
 import usePosts from '../../hooks/usePosts';
-import useUser from '../../hooks/useUser';
 import { Post } from './Post/Post';
 import Sidebar from '../Sidebar';
 import { NewPost } from './Post/NewPost';
@@ -19,7 +18,6 @@ const SORT_KEYS = {
 */
 const Home = () => {
   const { allPosts, isLoading: isPostsLoading } = usePosts();
-  const { allUsers, isLoading: isUsersLoading } = useUser();
   const [sort, setSort] = useState(SORT_KEYS.LATEST);
   const [sortedPosts, setSortedPosts] = useState([]);
 

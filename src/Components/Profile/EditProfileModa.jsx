@@ -51,7 +51,7 @@ export const EditProfileModal = ({ profile, setIsModalOpen = noop }) => {
 
   return (
     <Modal setIsModalOpen={setIsModalOpen}>
-      <div className=" edit-profile-modal">
+      <div className="edit-profile-modal">
         <div className="header">
           <h2 className="modal-title">Edit Profile</h2>
         </div>

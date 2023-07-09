@@ -36,6 +36,16 @@ export const users = [
         updatedAt: formatDate(),
         avatar: '/avatars/2.png',
       },
+      {
+        _id: 'fkfjvndf98347473csdg',
+        firstName: 'Abin',
+        lastName: 'John',
+        username: 'abin.john',
+        password: 'thenameisjohn',
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+        avatar: '/avatars/6.png',
+      },
     ],
     following: [
       {
@@ -113,6 +123,16 @@ export const users = [
         createdAt: formatDate(),
         updatedAt: formatDate(),
         avatar: '/avatars/1.png',
+      },
+      {
+        _id: 'fkfjvndf98347473csdg',
+        firstName: 'Abin',
+        lastName: 'John',
+        username: 'abin.john',
+        password: 'thenameisjohn',
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+        avatar: '/avatars/6.png',
       },
     ],
     following: [],

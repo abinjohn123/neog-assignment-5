@@ -7,3 +7,5 @@ export const getFullName = (firstName = '', lastName = '') =>
 
 export const getFirstName = (firstName = '') =>
   `${firstName.slice(0, 1).toUpperCase()}${firstName.slice(1)}`;
+
+export const setStateAfterDelay = (setter) => setTimeout(setter, 400);

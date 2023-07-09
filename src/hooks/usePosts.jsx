@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useAppContext } from '../context/AppContext';
 import { useAuthContext } from '../context/AuthContext';
 
+import { setStateAfterDelay } from '../utils';
+
 const usePosts = () => {
   const { allPosts, setAllPosts } = useAppContext();
   const { token } = useAuthContext();
@@ -44,7 +46,7 @@ const usePosts = () => {
         SuccessCallback();
       })
       .catch((err) => console.log(err))
-      .finally(() => setIsSubmitting(false));
+      .finally(() => setStateAfterDelay(() => setIsSubmitting(false)));
   };
 
   const likePost = (postId) => {
@@ -86,7 +88,7 @@ const usePosts = () => {
         SuccessCallback();
       })
       .catch((err) => console.log(err))
-      .finally(() => setIsSubmitting(false));
+      .finally(() => setStateAfterDelay(() => setIsSubmitting(false)));
   };
 
   const deletePost = (postId, SuccessCallback) => {

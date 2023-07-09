@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { useAuthContext } from '../context/AuthContext';
 import { useAppContext } from '../context/AppContext';
+import { setStateAfterDelay } from '../utils';
 
 import { noop } from '../utils';
 
@@ -100,7 +101,7 @@ const useUser = () => {
         successCallback();
       })
       .catch((err) => console.log(err))
-      .finally(() => setIsSubmitting(false));
+      .finally(() => setStateAfterDelay(() => setIsSubmitting(false)));
   };
 
   const unfollowUser = (userId, successCallback = noop) => {
@@ -118,7 +119,7 @@ const useUser = () => {
         successCallback();
       })
       .catch((err) => console.log(err))
-      .finally(() => setIsSubmitting(false));
+      .finally(() => setStateAfterDelay(() => setIsSubmitting(false)));
   };
 
   useEffect(fetchAllUsers, []);

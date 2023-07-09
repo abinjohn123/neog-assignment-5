@@ -1,8 +1,10 @@
 import Modal from '../../Shared/Modal';
 import usePosts from '../../../hooks/usePosts';
 
+import SpinnerButton from '../../Shared/SpinnerButton';
+
 const DeletePostModal = ({ setIsModalOpen, postId }) => {
-  const { deletePost, isLoading } = usePosts();
+  const { deletePost, isSubmitting } = usePosts();
 
   const handlePostDelete = (e) => {
     e.preventDefault();
@@ -19,9 +21,13 @@ const DeletePostModal = ({ setIsModalOpen, postId }) => {
       <p>
         Do you really wish to delete this post? <br /> This cannot be undone
       </p>
-      <button className="btn btn-primary btn-danger" onClick={handlePostDelete}>
-        {isLoading ? '   .   .   .   .   .   ' : 'Post'}
-      </button>
+      <SpinnerButton
+        className="btn-primary btn-danger"
+        isLoading={isSubmitting}
+        onClick={handlePostDelete}
+      >
+        Delete
+      </SpinnerButton>
     </Modal>
   );
 };

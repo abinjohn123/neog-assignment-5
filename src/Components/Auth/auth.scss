@@ -1,7 +1,7 @@
 @import '../../reuse';
 
 .login-form {
-  width: 640px;
+  max-width: 640px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -33,9 +33,15 @@
 
   .btn-row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 8px;
     margin-top: 12px;
+  }
+
+  @media screen and (min-width: 768px) {
+    .btn-row {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 
   .btn-submit {

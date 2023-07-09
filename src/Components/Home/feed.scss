@@ -1,9 +1,11 @@
 @import '../../_reuse.scss';
 
-.sort-card,
-.post-card,
-.new-post-card {
-  max-width: 660px;
+@media screen and (min-width: 768px) {
+  .sort-card,
+  .post-card,
+  .new-post-card {
+    max-width: 660px;
+  }
 }
 
 .sort-card {

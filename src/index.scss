@@ -38,12 +38,19 @@ body {
 #root {
   max-width: 1040px;
   margin: 0 auto;
+  padding: 0 16px;
 }
 
 .layout {
   display: grid;
   gap: 32px;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr;
+}
+
+@media screen and (min-width: 768px) {
+  .layout {
+    grid-template-columns: 1fr auto;
+  }
 }
 
 .overlay-enabled {

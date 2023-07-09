@@ -1,5 +1,15 @@
 @import '../../_reuse.scss';
 
+.sidebar {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .sidebar {
+    display: block;
+  }
+}
+
 .suggestions-card {
   @extend .card;
   margin-bottom: 16px;

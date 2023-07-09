@@ -37,7 +37,8 @@ const Header = () => {
   return (
     <header className="app-header">
       <NavLink to="/" className="logo">
-        <h1>key.club</h1>
+        <h1 className="sm-screen">k.c</h1>
+        <h1 className="lg-screen">key.club</h1>
       </NavLink>
 
       <div className="header-actions">

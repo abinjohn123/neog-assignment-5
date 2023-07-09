@@ -12,8 +12,23 @@
     &:active {
       text-decoration: none;
     }
-
     color: $primary-1;
+
+    .sm-screen {
+      display: block;
+    }
+    .lg-screen {
+      display: none;
+    }
+
+    @media screen and (min-width: 768px) {
+      .sm-screen {
+        display: none;
+      }
+      .lg-screen {
+        display: block;
+      }
+    }
   }
 
   .logo {

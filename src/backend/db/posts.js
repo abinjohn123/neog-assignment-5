@@ -111,4 +111,43 @@ export const posts = [
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
+  {
+    _id: uuid(),
+    content:
+      'Spent my weekend deep-cleaning and modding my keyboard. Removed every keycap, cleaned the switches, and added foam for a more satisfying typing experience. Feels like a brand new board! 🧹✨ #keyboardmaintenance',
+    likes: {
+      likeCount: 188,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: 'gaayamani',
+    createdAt: '2023-06-25T08:28:42.815Z',
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    content:
+      'Weekend vibes: Dedicate a few hours to cleaning and lubing your switches. Trust me, the improved smoothness and reduced sound are totally worth it. Happy modding! 🔧🔩 #keyboardmodding',
+    likes: {
+      likeCount: 212,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: 'sjohnyk',
+    createdAt: '2023-06-25T08:28:42.815Z',
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    content:
+      "Seeking input from the keyboard aficionados: I'm torn between a TKL (Tenkeyless) or a full-size keyboard. What are your thoughts on the pros and cons of each? 🤔⌨️ #keyboarddilemma",
+    likes: {
+      likeCount: 12,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: 'sjohnyk',
+    createdAt: '2023-06-25T08:28:42.815Z',
+    updatedAt: formatDate(),
+  },
 ];

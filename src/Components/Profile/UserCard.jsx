@@ -5,8 +5,9 @@ import { getFullName } from '../../utils';
 import { useAuthContext } from '../../context/AuthContext';
 import SpinnerButton from '../Shared/SpinnerButton';
 import authUtils from '../Auth/utils';
+import { noop } from '../../utils';
 
-const UserCard = ({ user }) => {
+const UserCard = ({ user, onUserClick = noop }) => {
   const { avatar, firstName, lastName, username, _id, followers } = user;
   const { followUser, unfollowUser, isSubmitting } = useUser();
   const { loggedInUser } = useAuthContext();
@@ -24,8 +25,13 @@ const UserCard = ({ user }) => {
     loginRedirect(() => (isFollowing ? unfollowUser(_id) : followUser(_id)));
   };
 
+  const handleUserClick = () => {
+    navigate(`/user/${_id}`);
+    onUserClick();
+  };
+
   return (
-    <div className="user-card" onClick={() => navigate(`/user/${_id}`)}>
+    <div className="user-card" onClick={handleUserClick}>
       <div className="avatar">
         <img src={avatar ?? '/avatars/1.png'} alt={username} />
       </div>

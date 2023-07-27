@@ -17,7 +17,11 @@ const UserListModal = ({ setIsModalOpen, userList }) => {
         <VoidSVG content={`No ${userList.type.toLowerCase()} found!`} />
       )}
       {detailedUserList.map((user) => (
-        <UserCard key={user._id} user={user} />
+        <UserCard
+          key={user._id}
+          user={user}
+          onUserClick={() => setIsModalOpen(false)}
+        />
       ))}
     </Modal>
   );

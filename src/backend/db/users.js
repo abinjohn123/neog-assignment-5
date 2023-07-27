@@ -38,8 +38,8 @@ export const users = [
       },
       {
         _id: 'fkfjvndf98347473csdg',
-        firstName: 'Abin',
-        lastName: 'John',
+        firstName: 'Abimon',
+        lastName: 'Fernandez',
         username: 'abin.john',
         password: 'thenameisjohn',
         createdAt: formatDate(),
@@ -126,8 +126,8 @@ export const users = [
       },
       {
         _id: 'fkfjvndf98347473csdg',
-        firstName: 'Abin',
-        lastName: 'John',
+        firstName: 'Abimon',
+        lastName: 'Fernandez',
         username: 'abin.john',
         password: 'thenameisjohn',
         createdAt: formatDate(),
@@ -139,8 +139,8 @@ export const users = [
   },
   {
     _id: 'fkfjvndf98347473csdg',
-    firstName: 'Abin',
-    lastName: 'John',
+    firstName: 'Abimon',
+    lastName: 'Fernandez',
     username: 'abin.john',
     password: 'thenameisjohn',
     createdAt: formatDate(),

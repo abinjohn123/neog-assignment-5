@@ -8,16 +8,20 @@ import authUtils from '../Auth/utils';
 
 const UserCard = ({ user }) => {
   const { avatar, firstName, lastName, username, _id, followers } = user;
-  const { followUser, isSubmitting } = useUser();
+  const { followUser, unfollowUser, isSubmitting } = useUser();
   const { loggedInUser } = useAuthContext();
   const navigate = useNavigate();
   const { loginRedirect } = authUtils();
+
+  const isFollowing = followers.some(
+    (follower) => follower.username === loggedInUser.username
+  );
 
   const handleFollowClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
 
-    loginRedirect(() => followUser(_id));
+    loginRedirect(() => (isFollowing ? unfollowUser(_id) : followUser(_id)));
   };
 
   return (
@@ -38,7 +42,7 @@ const UserCard = ({ user }) => {
           onClick={handleFollowClick}
           isLoading={isSubmitting}
         >
-          Follow
+          {isFollowing ? 'Unfollow' : 'Follow'}
         </SpinnerButton>
       )}
     </div>

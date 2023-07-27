@@ -40,7 +40,7 @@ const Profile = () => {
   };
 
   const openUserListModal = (list, type) => {
-    userList.current.list = list;
+    userList.current.list = list.map((user) => user._id);
     userList.current.type = type;
     setIsUserListModalOpen(true);
   };

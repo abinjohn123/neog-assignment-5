@@ -1,9 +1,8 @@
 import Modal from '../../Shared/Modal';
 import VoidSVG from '../../Shared/Void';
-import { UserCard } from '../../Sidebar/Suggestions';
+import UserCard from '../../Profile/UserCard';
 
 const UserListModal = ({ setIsModalOpen, userList }) => {
-  console.log(userList);
   return (
     <Modal setIsModalOpen={setIsModalOpen} width={400}>
       <h3>{userList.type}</h3>
